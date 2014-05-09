@@ -1,0 +1,96 @@
+body {
+  padding-top: 20px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.media:first-child {
+  margin-top: 15px;
+}
+
+.navbar-form {
+  margin-top: 10px;
+}
+
+footer.well {
+  margin-top: 25px;
+}
+
+input.qty {
+  width: 70px
+}
+
+tr.active {
+  white-space: nowrap;
+}
+
+.tooltip-inner {
+    white-space: pre-wrap;
+    min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  #cart-row .col-xs-12 {
+    padding: 0;
+  }
+}
+
+#alert-message {
+  z-index: 9999;
+  width: 100%;
+  position: fixed;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin: 0;
+  margin-top: -20px;
+  text-align: center;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+.fade.in {
+  opacity: .98;
+}
+
+.fade.out {
+  opacity: 0;
+}
+
+.h1, h1 {
+  font-size: 26px;
+}
+
+#admin-products-table td {
+  vertical-align: middle;
+}
+
+#admin-products-table td .glyphicon {
+  font-size: 30px;
+}
+
+table a, .table a {
+  text-decoration: none;
+}
+
+#report-graph {
+  height: 200px;
+  width: 100%;
+}
+
+.row.well {
+  margin-bottom: 0px;
+  padding: 20px;
+  border: 0;
+  background: black;
+}
+
+.thumbnail {
+  border: 0;
+}
