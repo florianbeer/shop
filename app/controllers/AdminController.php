@@ -13,7 +13,7 @@ class AdminController extends \BaseController {
     $numProducts = Product::count();
     $numCategories = Category::count();
     $numProcessed = Order::where('processed', '=', 1)->count();
-    $unprocessed = Order::orderBy('created_at', 'ASC')->with('user')->where('processed', '=', 0)->get();
+    $unprocessed = Order::orderBy('created_at', 'DESC')->with('user')->where('processed', '=', 0)->get();
     $now = Carbon::now()->setTime(00,00,00)->toDateTimeString();
     $lastMonth = Carbon::now()->subMonth(1)->toDateTimeString();
     $reports = DB::select(DB::raw("
@@ -26,7 +26,7 @@ class AdminController extends \BaseController {
 
     foreach ($reports as $i => $report) {
       $days[$i] = Carbon::createFromFormat('Y-m-d', $report->day)->formatLocalized(Config::get('shop.date-short'));
-      $totals[$i] = $report->totals;
+      $totals[$i] = (Float)$report->totals;
     }
 
     return View::make('admin.index')

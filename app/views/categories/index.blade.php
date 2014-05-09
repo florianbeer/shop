@@ -22,6 +22,8 @@
           {{ Form::submit('Create category', array('class' => 'btn btn-primary pull-right')) }}
       </div>
     {{ Form::close() }}
+    
+    <div class="col-xs-12 visible-sm visible-xs">&nbsp;</div>
 
     <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
       <table class="table table-condensed" id="admin-products-table">

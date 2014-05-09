@@ -43,7 +43,7 @@
     </div>
     
       <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
-        <h4 class="text-center">Income last month</4>
+        <h4 class="text-center">Income last month</h4>
         <canvas id="report-graph"></canvas>
       </div>
     </div>

@@ -2,6 +2,11 @@
 
 class StoreController extends BaseController {
 
+  public static $orderRules = [
+    'quantity' => 'integer|required|min:1'
+  ];
+  
+
   public function __construct() {
     parent::__construct();
     $this->beforeFilter('auth', ['only' => ['postAddtocart', 'getCart', 'getRemoveitem']]);
@@ -10,7 +15,10 @@ class StoreController extends BaseController {
   public function getIndex() {
     return View::make('store.index')
       ->with('title', 'Featured products')
-      ->with('products', Product::orderBy('created_at', 'DESC')->where('featured', '=', 1)->get());
+      ->with('products', Product::orderBy('created_at', 'DESC')
+        ->where('availability', '=', 1)
+        ->where('featured', '=', 1)
+        ->get());
   }
   
   public function getView($id) {
@@ -63,20 +71,30 @@ class StoreController extends BaseController {
   }
   
   public function postAddtocart() {
-    $product = Product::find(Input::get('id'));
-    $quantity = Input::get('quantity');
+
+    $validator = Validator::make(['quantity' => Input::get('quantity')], $this::$orderRules);
+
+    if ($validator->passes()) {
+      $product = Product::find(Input::get('id'));
+      $quantity = Input::get('quantity');
     
-    Cart::insert([
-      'id' => $product->id,
-      'name' => $product->title,
-      'price' => $product->price,
-      'tax' => $product->tax,
-      'quantity' => $quantity,
-      'image' => $product->image
-    ]);
+      Cart::insert([
+        'id' => $product->id,
+        'name' => $product->title,
+        'price' => $product->price,
+        'tax' => $product->tax,
+        'quantity' => $quantity,
+        'image' => $product->image
+      ]);
+    
+      return Redirect::back()
+        ->with('message', '&quot;'.$product->title.'&quot; was added to your shopping cart');
+    }
     
     return Redirect::back()
-      ->with('message', '&quot;'.$product->title.'&quot; was added to your shopping cart');
+      ->with('message', 'Invalid quantity')
+        ->withErrors($validator);
+    
   }
   
   public function getCart() {

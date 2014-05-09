@@ -16,7 +16,7 @@ class UsersController extends BaseController {
   
   public function getOrder($id) {
     $order = Order::with('user')->find($id);
-    if (Auth::user()->admin === 1 || $order->user == Auth::user()){
+    if (Auth::user()->admin == 1 || $order->user == Auth::user()){
       return View::make('orders.view')
         ->with('order', $order)
         ->with('items', json_decode($order->items))
