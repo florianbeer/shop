@@ -53,14 +53,14 @@ return array(
 		),
 
 		'mysql' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'zshop',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+      'driver'    => 'mysql',
+      'host'      => getenv('DB_HOST'),
+      'database'  => getenv('DB_NAME'),
+      'username'  => getenv('DB_USER'),
+      'password'  => getenv('DB_PASSWORD'),
+      'charset'   => 'utf8',
+      'collation' => 'utf8_unicode_ci',
+      'prefix'    => '',
 		),
 
 		'pgsql' => array(
