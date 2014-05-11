@@ -15,4 +15,14 @@ class Order extends Eloquent {
     return $this->belongsTo('User');
   }
   
+  public function scopeProcessed($query)
+  {
+    return $query->whereProcessed(1);
+  }
+  
+  public function scopeUnprocessed($query)
+  {
+    return $query->whereProcessed(0);
+  }
+  
 }

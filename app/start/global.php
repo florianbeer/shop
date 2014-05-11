@@ -51,6 +51,11 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+App::error(function(Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, $code)
+{
+  return Response::view('errors.404', ['title' => '404'], 404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
@@ -79,3 +84,12 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require View Composers
+|--------------------------------------------------------------------------
+|
+*/
+
+require app_path().'/composers.php';

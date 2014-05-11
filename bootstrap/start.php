@@ -60,14 +60,6 @@ $framework = $app['path.base'].
 
 require $framework.'/Illuminate/Foundation/start.php';
 
-
-setlocale(LC_MONETARY, Config::get('shop.locale'));
-setlocale(LC_TIME, Config::get('shop.locale'));
-
-View::composer('partials._navbar', function($view) {
-  $view->with('categories', Category::orderBy('created_at', 'DESC')->get());
-});
-
 /*
 |--------------------------------------------------------------------------
 | Return The Application

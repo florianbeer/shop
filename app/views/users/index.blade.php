@@ -2,8 +2,8 @@
 
 @section('breadcrumbs')
   <ol class="breadcrumb hidden-print">
-    <li><a href="/admin">Admin</a></li>
-    <li class="active">Users</li>
+    <li><a href="{{ URL::route('admin.index') }}">{{ Lang::get('admin.name') }}</a></li>
+    <li class="active">{{ Lang::get('users.name') }}</li>
   </ol>
 @stop
 
@@ -18,10 +18,10 @@
       <table class="table" id="admin-users-table">
         <thead>
           <tr class="active">
-            <th>Name</th>
-            <th>Email</th>
-            <th>Orders</th>
-            <th>Created</th>
+            <th>{{ Lang::get('misc.name') }}</th>
+            <th>{{ Lang::get('misc.email') }}</th>
+            <th>{{ Lang::choice('orders.name', 2) }}</th>
+            <th>{{ Lang::get('misc.created-at') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -30,12 +30,12 @@
               <td>{{ $user->firstname }} {{ $user->lastname }}</td>
               <td>{{ $user->email }}</td>
               <td>
-                @if(count($user->order) > 0)
+                @if(count($user->orders) > 0)
                 <div class="dropdown">
-                  <a href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">{{ count($user->order) }} Orders <span class="caret"></span></a>
+                  <a href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">{{ $user->orders->count() }} {{ Lang::choice('orders.name', $user->orders->count()) }} <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                  @foreach($user->order as $order)
-                    <li><a href="/order/{{ $order->id }}">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</a></li>
+                  @foreach($user->orders as $order)
+                    <li><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</a></li>
                   @endforeach
                   </ul>
                 </div>
@@ -43,8 +43,7 @@
               </td>
               <td>
                 <span class="text-muted" title="{{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}"
-                  data-toggle="tooltip" data-placement="left" data-original-title="{{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}"
-                  >
+                  data-toggle="tooltip" data-placement="left">
                   {{ Carbon::createFromTimeStamp(strtotime($user->created_at))->diffForHumans() }}
                 </span>
               </td>

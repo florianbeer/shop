@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration {
       $table->integer('category_id')->unsigned()->index();
       $table->string('title')->index();
       $table->text('description');
-      $table->decimal('price', 6, 2);
+      $table->decimal('price', 10, 2);
       $table->float('tax')->default(20);
       $table->boolean('availability')->default(1);
       $table->boolean('featured')->default(0);

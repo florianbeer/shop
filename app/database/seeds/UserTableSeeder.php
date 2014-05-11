@@ -33,12 +33,12 @@ class UserTableSeeder extends Seeder {
     $faker = Faker\Factory::create();
     
     foreach(range(1,200) as $index) {
-      $firstnam = $faker->firstName();
+      $firstname = $faker->firstName();
       $lastname = $faker->lastName();
       User::create([
-        'firstname' => $firstnam,
+        'firstname' => $firstname,
         'lastname' => $lastname,
-        'email' => $firstnam.'.'.$lastname.'@example.net',
+        'email' => strtolower($firstname).'.'.strtolower($lastname).'@example.net',
         'password' => Hash::make('test'),
         'street' => $faker->streetName(),
         'number' => $faker->buildingNumber(),

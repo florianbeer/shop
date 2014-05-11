@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://zehetbauerwein.at/shop',
+	'url' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -122,7 +122,9 @@ return array(
     'Intervention\Image\ImageServiceProvider',
     'Moltin\Cart\CartServiceProvider',
     'Way\Generators\GeneratorsServiceProvider',
-
+    'Barryvdh\Debugbar\ServiceProvider',
+    'Shop\Search\SearchServiceProvider',
+    
 	),
 
 	/*
@@ -190,7 +192,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
     'Image'           => 'Intervention\Image\Facades\Image',
     'Cart'            => 'Moltin\Cart\Facade',
-     'Carbon'         => 'Carbon\Carbon',
+    'Carbon'          => 'Carbon\Carbon',
+    'Search'          => 'Shop\Facades\Search',
 
 	),
 

@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
   <ol class="breadcrumb hidden-print">
-    <li><a href="/admin">Admin</a></li>
+    <li><a href="/admin">{{ Lang::get('admin.name') }}</a></li>
     <li class="active">{{ $title }}</li>
   </ol>
 @stop
@@ -14,36 +14,34 @@
 @section('content')
 
   <div class="row">
-    {{ Form::open(['url' => 'admin/categories/create', 'class' => 'col-lg-4 col-md-4']) }}
-      <div class="form-group">
-          {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Category name')) }}
+    {{ Form::model($category, ['route' => $route, 'method' => $method, 'class' => 'col-lg-4 col-md-4']) }}
+      <div class="form-group {{ $errors->has('name') ? 'has-error' : false }}">
+          {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => Lang::get('categories.category-name') )) }}
+          @foreach($errors->get('name') as $message)
+            <span class='help-block'>{{ $message }}</span>
+          @endforeach
       </div>
       <div class="form-group">
-          {{ Form::submit('Create category', array('class' => 'btn btn-primary pull-right')) }}
+          {{ Form::submit(Lang::get('categories.create-category'), array('class' => 'btn btn-primary ')) }}
       </div>
     {{ Form::close() }}
     
     <div class="col-xs-12 visible-sm visible-xs">&nbsp;</div>
 
-    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
-      <table class="table table-condensed" id="admin-products-table">
+    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12 table-responsive">
+      <table class="table table-condensed" id="admin-categories-table">
         <thead>
-          <tr>
-            <th>Title</th>
-            <th>Delete</th>
+          <tr class="active">
+            <th>{{ Lang::get('misc.title') }}</th>
+            <th class="text-center">{{ Lang::get('misc.delete') }}</th>
           </tr>
         </thead>
         <tbody>
           @foreach($categories as $category)
             <tr>
-              <td>{{ $category->name }}</td>
-              <td>
-                {{ Form::open(['url' => 'admin/categories/destroy', 'style' => 'display: inline-block;']) }}
-                  <div class="form-group">
-                    {{ Form::hidden('id', $category->id) }}
-                    {{ Form::submit('delete', array('class' => 'btn btn-danger btn-xs')) }}
-                  </div>
-                {{ Form::close() }}
+              <td>{{ HTML::linkRoute('categories.edit', $category->name, [$category->id]) }}</td>
+              <td class="text-center">
+                  <a href="{{ URL::route('categories.destroy', [$category->id]) }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
               </td>
             </tr>
           @endforeach

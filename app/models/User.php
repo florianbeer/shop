@@ -19,14 +19,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
-  protected $fillable = ['firstname', 'lastname', 'email', 'street', 'number', 'zip', 'city', 'country'];
+  protected $fillable = ['firstname', 'lastname', 'password', 'email', 'street', 'number', 'zip', 'city', 'country'];
   
   public static $rules = [
     'firstname' => 'required|min:2|alpha',
     'lastname' => 'required|min:2|alpha',
     'email' => 'required|email|unique:users',
-    'password' => 'required|alpha_num|between:8,12|confirmed',
-    'password_confirmation' => 'required|alpha_num|between:8,12',
+    'password' => 'required|alpha_num|between:6,12|confirmed',
+    'password_confirmation' => 'required|alpha_num|between:6,12',
     'street' => 'required',
     'number' => 'required',
     'zip' => 'required|between:2,8',
@@ -35,7 +35,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     'admin' => 'integer'
   ];
   
-  public static $rulesUpdate = [
+  public static $updateRules = [
     'firstname' => 'required|min:2|alpha',
     'lastname' => 'required|min:2|alpha',
     'email' => 'required|email',
@@ -108,9 +108,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-  public function order() {
+  public function orders() {
     return $this->hasMany('Order');
   }
 
+  public function setPasswordAttribute($password){
+    $this->attributes['password'] = Hash::make($password);
+  }
 
 }

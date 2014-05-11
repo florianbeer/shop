@@ -1,117 +1,135 @@
 <?php
 
-class UsersController extends BaseController {
+class UsersController extends \BaseController {
 
   public function __construct() {
     parent::__construct();
-    $this->beforeFilter('auth', ['only' => ['getOrderHistory', 'getProfile']]);
+    $this->beforeFilter('auth', ['only' => ['edit', 'update']]);
+    $this->beforeFilter('admin', ['only' => ['index']]);
   }
 
-  public function getIndex() {
-    $users = User::orderBy('created_at', 'DESC')->with('order')->get();
+	/**
+	 * Display a listing of the resource.
+	 * GET /users
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+    $users = User::orderBy('created_at', 'DESC')->with('orders')->get();
     return View::make('users.index')
-      ->with('title', count($users).' Users')
-      ->with('users', $users);
-  }
-  
-  public function getOrder($id) {
-    $order = Order::with('user')->find($id);
-    if (Auth::user()->admin == 1 || $order->user == Auth::user()){
-      return View::make('orders.view')
-        ->with('order', $order)
-        ->with('items', json_decode($order->items))
-        ->with('title', 'Order #'.$order->id);
+      ->withTitle(count($users).' '.Lang::get('users.name'))
+      ->withUsers($users);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /register
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+    return View::make('users.create')
+      ->withTitle(Lang::get('users.create'));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /users
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+    $validation = Validator::make(Input::all(), User::$rules);
+
+    if ($validation->fails()) {
+      return Redirect::route('users.create')
+        ->withErrors($validator)
+        ->withInput();
     }
+
+    $user = User::create(Input::all());
+    Auth::login($user);
+
     return Redirect::home()
-      ->with('message', 'Order not found');
-    
-  }
-  
-  public function getOrderHistory() {
-    return View::make('orders.show')
-      ->with('orders', Auth::user()->order)
-      ->with('title', 'Order history');
-  }
-  
-  public function getNewaccount() {
-    return View::make('users.newaccount')
-      ->with('title', 'Sign up');
-  }
-  
-  public function postCreate() {
-    $validator = Validator::make(Input::all(), User::$rules);
-    
-    if ($validator->passes()) {
-      $user = new User;
-      $user->firstname = Input::get('firstname');
-      $user->lastname = Input::get('lastname');
-      $user->email = Input::get('email');
-      $user->password = Hash::make(Input::get('password'));
-      $user->street = Input::get('street');
-      $user->number = Input::get('number');
-      $user->zip = Input::get('zip');
-      $user->city = Input::get('city');
-      $user->country = Input::get('country');
-      $user->save();
-      
-      return Redirect::to('/users/signin')
-        ->with('message', 'Thank you for creating a new account. Please sign in.');
+      ->with('message', Lang::get('users.create-success'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /profile
+	 *
+	 * @return Response
+	 */
+	public function edit()
+	{
+    $user = Auth::user();
+    return View::make('users.edit')
+      ->withUser($user)
+      ->withTitle(Lang::get('users.profile'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /users/{id}
+	 *
+	 * @param  User  $user
+	 * @return Response
+	 */
+	public function update(User $user)
+	{
+    $validation = Validator::make(Input::all(), User::$updateRules);
+
+    if ($validation->fails()) {
+      return Redirect::route('users.edit')
+        ->withErrors($validation)
+        ->withInput();
     }
-    
-    return Redirect::to('/users/newaccount')
-      ->withErrors($validator)
-      ->withInput();
-  }
-  
-  public function postUpdate() {
-    $validator = Validator::make(Input::all(), User::$rulesUpdate);
-    
-    if ($validator->passes()) {
-      $user = User::find(Auth::user()->id);
-      $user->firstname = Input::get('firstname');
-      $user->lastname = Input::get('lastname');
-      $user->email = Input::get('email');
-      $user->street = Input::get('street');
-      $user->number = Input::get('number');
-      $user->zip = Input::get('zip');
-      $user->city = Input::get('city');
-      $user->country = Input::get('country');
-      $user->save();
-      
-      return Redirect::to('/users/profile')
-        ->with('message', 'Your profile was updated');
-    }
-    
-    return Redirect::to('/users/profile')
-      ->withErrors($validator)
-      ->withInput();
-  }
-  
-  public function getSignin() {
-    return View::make('users.signin')
+
+		$user->update(Input::all());
+
+    return Redirect::route('users.edit')
+      ->with('message', Lang::get('users.update-success'));
+	}
+
+	/**
+	 * Display login form.
+	 * GET /login
+	 *
+	 * @return Response
+	 */
+  public function login() {
+    return View::make('users.login')
       ->with('title', 'Log in');
   }
-  
-  public function postSignin() {
-    if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])) {
-      return Redirect::to('/');
+
+	/**
+	 * Attempt user login.
+	 * POST /login
+	 *
+	 * @return Response
+	 */
+  public function doLogin() {
+    if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')], true)) {
+      return Redirect::intended();
     }
-    
-    return Redirect::to('users/signin')
-      ->with('message', 'Your email/password combo was incorrect');
+
+    return Redirect::route('users.login')
+      ->with('message', Lang::get('users.login-error'));
   }
-  
-  public function getSignout() {
+
+	/**
+	 * Log out the user.
+	 * GET /logout
+	 *
+	 * @return Response
+	 */
+  public function logout() {
     Auth::logout();
     return Redirect::home()
-      ->with('message', 'You have been signed out');
+      ->with('message', Lang::get('users.logout-message'));
   }
-  
-  public function getProfile() {
-    $user = Auth::user();
-    return View::make('users.profile')
-      ->with('user', $user)
-      ->with('title', 'Profile');
-  }
-    
+
 }

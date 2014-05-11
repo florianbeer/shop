@@ -35,7 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('users/signin');
+	if (Auth::guest()) return Redirect::guest('login');
 });
 
 
@@ -60,11 +60,22 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
-/* Admin Filter */
+/*
+|--------------------------------------------------------------------------
+| Admin Filter
+|--------------------------------------------------------------------------
+|
+| Ensure that the current user has admin privileges.
+| Otherwise redirect to generic 404 not found page.
+|
+*/
 
 Route::filter('admin', function()
 {
-	if (!Auth::user() || Auth::user()->admin != 1) return Redirect::to('/');
+	if (Auth::guest() || Auth::user()->admin != 1)
+  {
+    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+  }
 });
 
 /*

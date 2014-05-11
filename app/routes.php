@@ -1,33 +1,60 @@
 <?php
+/*
+ * Shop and static pages
+ */
+Route::get('/', ['uses' => 'ShopController@index', 'as' => 'home']);
+Route::get('contact', ['uses' => 'ShopController@contact', 'as' => 'contact']);
+Route::get('sitemap.xml', 'ShopController@sitemap');
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+ * Product resource
+ */
+Route::model('products', 'Product');
+Route::resource('products', 'ProductsController', ['only' => ['index', 'store', 'show', 'edit', 'update']]);
+Route::get('products/{products}/delete', ['uses' => 'ProductsController@destroy', 'as' => 'products.destroy']);
+Route::get('products/{products}/toggleFeatured', ['uses' => 'ProductsController@toggleFeatured', 'as' => 'products.togglefeatured']);
+Route::get('products/{products}/toggleAvailability', ['uses' => 'ProductsController@toggleAvailability', 'as' => 'products.toggleavailability']);
 
-Route::get('/', ['uses' => 'StoreController@getIndex', 'as' => 'home']);
-Route::post('order/create', ['uses' => 'StoreController@postCreateorder']);
-Route::get('order/history', ['uses' => 'UsersController@getOrderHistory']);
-Route::get('order/{id}', ['uses' => 'UsersController@getOrder']);
-Route::get('/users/profile', ['uses' => 'UsersController@getProfile']);
-Route::get('contact', ['uses' => 'StoreController@getContact']);
-Route::controller('store', 'StoreController');
-Route::controller('users', 'UsersController');
+/*
+ * Category resource
+ */
+Route::model('categories', 'Category');
+Route::resource('categories', 'CategoriesController', ['only' => ['index', 'store', 'show', 'edit', 'update']]);
+Route::get('categories/{categories}/delete', ['uses' => 'CategoriesController@destroy', 'as' => 'categories.destroy']);
+Route::post('categories/{categories}/moveProducts', ['uses' => 'CategoriesController@moveProducts','as' => 'categories.move']);
 
-/* Admin routes */
-Route::group(array('before' => 'admin'), function() {
-  Route::get('admin', ['uses' => 'AdminController@index']);
-  Route::get('admin/users', ['uses' => 'UsersController@getIndex']);
-  Route::get('admin/products/{filter}', ['uses' => 'ProductsController@getIndex']);
-  Route::get('admin/product/togglefeatured/{id}', ['uses' => 'ProductsController@getToggleFeatured']);
-  Route::get('admin/order/process/{id}', ['uses' => 'StoreController@getToggleProcessed']);
-  Route::get('admin/order/reopen/{id}', ['uses' => 'StoreController@getToggleProcessed']);
-  Route::controller('admin/categories', 'CategoriesController');
-  Route::controller('admin/products', 'ProductsController');
-});
+/*
+ * Cart resource
+ */
+Route::resource('cart', 'CartController' , ['only' => ['index', 'store']]);
+Route::get('cart/remove/{identifier}', ['uses' => 'CartController@destroy', 'as' => 'cart.destroy']);
+Route::get('cart/{identifier}/qtyUp', ['uses' => 'CartController@qtyUp', 'as' => 'cart.qtyup']);
+Route::get('cart/{identifier}/qtyDown', ['uses' => 'CartController@qtyDown', 'as' => 'cart.qtydown']);
+
+/*
+ * Order resource
+ */
+Route::model('orders', 'Order');
+Route::resource('orders', 'OrdersController', ['only' => ['index', 'store', 'show']]);
+Route::get('orders/{orders}/toggleProcessed', ['uses' => 'OrdersController@toggleProcessed', 'as' => 'orders.toggleprocessed']);
+
+/*
+ * User resource
+ */
+Route::model('users', 'User');
+Route::resource('users', 'UsersController', ['only' => ['index', 'store', 'update']]);
+Route::get('login', ['uses' => 'UsersController@login', 'as' => 'users.login']);
+Route::post('login', ['uses' => 'UsersController@doLogin', 'as' => 'users.login']);
+Route::get('logout', ['uses' => 'UsersController@logout', 'as' => 'users.logout']);
+Route::get('register', ['uses' => 'UsersController@create', 'as' => 'users.create']);
+Route::get('profile', ['uses' => 'UsersController@edit', 'as' => 'users.edit']);
+
+/*
+ * Admin
+ */
+Route::get('/admin', ['uses'  => 'AdminController@index', 'as'    => 'admin.index']);
+
+/*
+ * Password reminder
+ */
+Route::controller('password', 'RemindersController');

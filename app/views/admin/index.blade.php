@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
   <ol class="breadcrumb hidden-print">
-    <li class="active">Admin</li>
+    <li class="active">{{ Lang::get('admin.name') }}</li>
   </ol>
 @stop
   
@@ -16,48 +16,48 @@
       <ul class="list-group">
         <li class="list-group-item">
           <span class="glyphicon glyphicon-user"></span>
-          Users
-          <span class="label label-default pull-right">{{$numUsers}}</span>
+          {{ Lang::get('users.name') }}
+          <span class="label label-default pull-right">{{$numusers}}</span>
         </li>
         <li class="list-group-item">
           <span class="glyphicon glyphicon-th-large"></span>
-          Categories
-          <span class="label label-default pull-right">{{ $numCategories }}</span>
+          {{ Lang::get('categories.name') }}
+          <span class="label label-default pull-right">{{ $numcategories }}</span>
         </li>
         <li class="list-group-item">
           <span class="glyphicon glyphicon-th"></span>
-          Products
-          <span class="label label-default pull-right">{{ $numProducts }}</span>
+          {{ Lang::get('products.name') }}
+          <span class="label label-default pull-right">{{ $numproducts }}</span>
         </li>
         <li class="list-group-item">
           <span class="glyphicon glyphicon-edit"></span>
-          Processed orders
-          <span class="label label-default pull-right">{{ $numProcessed }}</span>
+          {{ Lang::get('orders.processed-orders') }}
+          <span class="label label-default pull-right">{{ $numprocessed }}</span>
         </li>
         <li class="list-group-item">
           <span class="glyphicon glyphicon-edit"></span>
-          Unprocessed orders
+          {{ Lang::get('orders.unprocessed-orders') }}
           <span class="label label-default pull-right">{{ count($unprocessed) }}</span>
         </li>
       </ul>
     </div>
     
       <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
-        <h4 class="text-center">Income last month</h4>
+        <h4 class="text-center">{{ Lang::get('admin.graph-title') }}</h4>
         <canvas id="report-graph"></canvas>
       </div>
     </div>
     
     <div class="row">
       <div class="col-xs-12">
-        <h4>Unprocessed orders</h4>
+        <h4>{{ Lang::get('orders.unprocessed-orders') }}</h4>
         <table class="table">
           <thead>
             <tr class="active">
-              <th>Order #</th>
-              <th>Name</th>
-              <th>Items</th>
-              <th>Created at</th>
+              <th>{{ Lang::get('orders.order-number') }}</th>
+              <th>{{ Lang::get('misc.name') }}</th>
+              <th>{{ Lang::get('misc.items') }}</th>
+              <th>{{ Lang::get('misc.created-at') }}</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -65,12 +65,12 @@
           @foreach($unprocessed as $order)
             <tr>
               <td>{{ $order->id }}</td>
-              <td><a href="/order/{{ $order->id }}">{{ $order->user->firstname }} {{ $order->user->lastname }}</a></td>
+              <td><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->user->firstname }} {{ $order->user->lastname }}</a></td>
               <td><span class="badge">{{count(json_decode($order->items)) }}</span></td>
               <td>{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>
               <td>
-                <a href="/order/process/{{ $order->id }}" class="btn btn-success btn-sm"
-                  data-toggle="tooltip" data-placement="left" title="Mark as processed" data-original-title="Mark as processed">
+                <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-success btn-sm"
+                  title="{{ Lang::get('orders.process') }}" data-toggle="tooltip" data-placement="left">
                   <span class="glyphicon glyphicon-ok-circle"></span>
                 </a>
               </td>
@@ -101,7 +101,6 @@
   			pointStrokeColor : "#d8ad52"
         }]
     };
-    
     new Chart(ctx).Line(chart);
   });
 </script>

@@ -1,100 +1,176 @@
 <?php
 
-class ProductsController extends BaseController {
-  
-  public function getIndex($filter = null) {
-    if (Request::get('page')) {
-      Session::put('page', Input::get('page'));
-    } else {
-      Session::forget('page');
-    }
+use Shop\Creators\ProductCreator;
 
-    if ($filter === 'featured') {
-      $products = Product::where('featured', 1)->orderBy('created_at', 'DESC')->paginate(10);
-    } else if ($filter === 'outofstock') {
-      $products = Product::where('availability', 0)->orderBy('created_at', 'DESC')->paginate(10);
-    } else {
+class ProductsController extends \BaseController {
+
+  public function __construct() {
+    parent::__construct();
+    $this->beforeFilter('admin', ['except' => ['show']]);
+  }
+
+	/**
+	 * Display a listing of the resource.
+	 * GET /products
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+    $filter = Input::get('filter');
+
+    if ($filter === 'featured')
+    {
+      $products = Product::orderBy('created_at', 'DESC')->featured()->inStock()->paginate(10);
+    }
+    else if ($filter === 'outofstock')
+    {
+      $products = Product::orderBy('created_at', 'DESC')->outOfStock()->paginate(10);
+    }
+    else
+    {
       $products = Product::orderBy('created_at', 'DESC')->paginate(10);
     }
 
     return View::make('products.index')
-      ->with('title', 'Products')
-      ->with('categories', Category::orderBy('created_at', 'DESC')->lists('name', 'id'))
-      ->with('filter', $filter)
-      ->with('products', $products);
-  }
-  
-  public function postCreate() {
-    $validator = Validator::make(Input::all(), Product::$rules);
-    
-    if ($validator->passes()) {
-      $product = new Product;
-      $product->category_id = Input::get('category_id');
-      $product->title = Input::get('title');
-      $product->description = Input::get('description');
-      $product->price = str_replace(',', '.', Input::get('price'));
-      
-      $image = Input::file('image');
-      $filename = date('Y-m-d-H:i:s').'-'.$image->getClientOriginalName();
-      Image::make($image->getRealPath())->save(public_path().'/img/products/'.$filename);
-      $product->image = 'img/products/'.$filename;
+      ->withProduct([])
+      ->withMethod('post')
+      ->withRoute('products.store')
+      ->withTitle(Lang::get('products.name'))
+      ->withCategories(Category::orderBy('created_at', 'DESC')->lists('name', 'id'))
+      ->withProducts($products);
+	}
 
-      $product->save();
-      
-      return Redirect::to('admin/products/index')
-        ->with('message', 'Product created');
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /products
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+    $creator = new ProductCreator($this);
+    return $creator->create(Input::all());
+	}
+
+	/**
+	 * Display the specified resource.
+	 * GET /products/{id}
+	 *
+	 * @param  Product $product
+	 * @return Response
+	 */
+	public function show(Product $product)
+	{
+    if ($product->availability) {
+      return View::make('products.show')
+        ->withTitle($product->title)
+        ->withProduct($product);
     }
-    
-    return Redirect::to('admin/products/index')
-      ->withErrors($validator)
+
+    return Redirect::home()
+      ->with('message', Lang::get('products.name').' '.Lang::get('misc.not-found'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /products/{id}/edit
+	 *
+	 * @param  Prodcut $product
+	 * @return Response
+	 */
+	public function edit(Product $product)
+	{
+		return View::make('products.edit')
+      ->withRoute(['products.update', $product->id])
+      ->withMethod('patch')
+      ->withTitle($product->title)
+      ->withCategories(Category::orderBy('created_at', 'DESC')->lists('name', 'id'))
+      ->withProduct($product);
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /products/{id}
+	 *
+	 * @param  Product  $product
+	 * @return Response
+	 */
+	public function update(Product $product)
+	{
+    $creator = new ProductCreator($this);
+    return $creator->create(Input::all(), $product);
+  }
+
+	/**
+	 * Remove the specified resource from storage.
+	 * GET /products/{id}/delete
+	 *
+	 * @param  Product  $product
+	 * @return Response
+	 */
+	public function destroy(Product $product)
+	{
+    File::delete(public_path().DIRECTORY_SEPARATOR.$product->image);
+    File::delete(public_path().DIRECTORY_SEPARATOR.str_replace('img/products/', 'img/products/thumb-', $product->image));
+    File::delete(public_path().DIRECTORY_SEPARATOR.str_replace('img/products/', 'img/products/small-', $product->image));
+    $product->delete();
+    return Redirect::route('products.index')
+      ->with('message', $product->title.' '.Lang::get('misc.deleted'));
+	}
+
+	/**
+	 * Set availability status (in stock vs. out of stock).
+	 * GET /products/{id}/toggleAvailability
+	 *
+	 * @param  Product  $product
+	 * @return Response
+	 */
+  public function toggleAvailability(Product $product)
+  {
+    $product->availability = !$product->availability;
+    $product->save();
+    return Redirect::back()
+      ->withMessage($product->title.' '.Lang::get('misc.updated'));
+  }
+
+	/**
+	 * Set featured status.
+	 * GET /products/{id}/toggleFeatured
+	 *
+	 * @param  Product  $product
+	 * @return Response
+	 */
+  public function toggleFeatured(Product $product)
+  {
+    $product->featured = !$product->featured;
+    $product->save();
+    return Redirect::back()
+      ->withMessage($product->title.' '.Lang::get('misc.updated'));
+  }
+
+
+	/**
+	 * Product creator calback if creation fails.
+	 *
+	 * @return Response
+	 */
+  public function productCreationFails($errors)
+  {
+    return Redirect::back()
+      ->withErrors($errors)
       ->withInput();
   }
-  
-  public function postDestroy() {
-    $product = Product::find(Input::get('id'));
-    
-    if ($product) {
-      File::delete('public/'.$product->image);
-      $product->delete();
-      return Redirect::to('admin/products/index')
-        ->with('message', 'Product deleted');
-    }
-    
-    return Redirect::to('admin/products/index')
-      ->with('message', 'Product not found');  
-  }
-  
-  public function postToggleAvailability() {
-    $product = Product::find(Input::get('id'));
- 
-    if ($product) {
- 
-      $product->availability = Input::get('availability');
-      $product->save();
 
- 
-      return Redirect::back()
-        ->with('message', 'Product updated');
-    }
-    
-    return Redirect::to('/admin/products/index')
-      ->with('message', 'Product not found');
- 
+	/**
+	 * Product creator calback if creation succeeds.
+	 *
+	 * @return Response
+	 */
+  public function productCreationSucceeds()
+  {
+    return Redirect::route('products.index')
+      ->withMessage(Lang::get('products.name').' '.Lang::get('misc.saved'));
   }
-  
-  public function getToggleFeatured($id) {
-    $product = Product::find($id);
-    
-    if ($product) {
-      $product->featured = !$product->featured;
-      $product->save();
 
-      return Redirect::back();
-    }
-
-    return Redirect::to('/admin/products/index')
-      ->with('message', 'Product not found');
-          
-  }
-   
 }
