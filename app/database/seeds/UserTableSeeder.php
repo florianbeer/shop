@@ -8,7 +8,7 @@ class UserTableSeeder extends Seeder {
     $user->firstname = 'Florian';
     $user->lastname = 'Beer';
     $user->email = 'fb@42dev.eu';
-    $user->password = Hash::make('flo');
+    $user->password = 'flo';
     $user->street = 'Millergasse';
     $user->number = '40/14';
     $user->zip = '1060';
@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder {
     $user->firstname = 'Stefan';
     $user->lastname = 'Zehetbauer';
     $user->email = 'st.zehetbauer@live.com';
-    $user->password = Hash::make('test');
+    $user->password = 'test';
     $user->street = 'Hauptstraße';
     $user->number = '3';
     $user->zip = '7081';
@@ -39,7 +39,7 @@ class UserTableSeeder extends Seeder {
         'firstname' => $firstname,
         'lastname' => $lastname,
         'email' => strtolower($firstname).'.'.strtolower($lastname).'@example.net',
-        'password' => Hash::make('test'),
+        'password' => 'test',
         'street' => $faker->streetName(),
         'number' => $faker->buildingNumber(),
         'zip' => $faker->postcode(),
