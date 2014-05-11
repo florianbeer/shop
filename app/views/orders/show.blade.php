@@ -73,7 +73,7 @@
           <tr>
             <td><span class="text-muted badge">{{ $product->quantity }}&times;</span> {{ $product->name }}</td>
             <td class="text-right">
-              {{ money_format('%!.2n', $product->price) }} {{ Config::get('shop.currency-symbol') }}
+              {{ $product->price }} {{ Config::get('shop.currency-symbol') }}
               <small class="text-muted">({{ $product->tax }}% {{ Lang::get('misc.tax') }})</small>
               </td>
             <td class="text-right">{{ money_format('%!.2n', ($product->price + $product->price * $product->tax/100) * $product->quantity) }} {{ Config::get('shop.currency-symbol') }}</td>
