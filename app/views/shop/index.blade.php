@@ -13,6 +13,20 @@
 @stop
 
 @section('content')
+  <div class="row">
+    <div class="col-xs-12 well">
+      <h3>Welcome to the <strong>Demo</strong>.</h3>
+      <p>
+        Login information is available on the {{ HTML::linkRoute('users.login', 'login page') }}.<br>
+        Currently only the german localization is complete. Future versions will pick a translation, 
+        according to your browser's language settings.
+      </p>
+      <p>
+        All sample data will be refreshed every 24 hours.<br>
+        Feel free to browse around, add, edit, delete, order etc. 
+      </p>
+    </div>
+  </div>
   @if(count($products) > 0)
     @include('partials._products')
   @else

@@ -2,37 +2,26 @@
 
 class UserTableSeeder extends Seeder {
   
-  public function run() {
+  public function run()
+  {
 
     $user = new User;
-    $user->firstname = 'Florian';
-    $user->lastname = 'Beer';
-    $user->email = 'fb@42dev.eu';
-    $user->password = 'flo';
-    $user->street = 'Millergasse';
-    $user->number = '40/14';
-    $user->zip = '1060';
-    $user->city = 'Wien';
-    $user->country = 'Österreich';
-    $user->admin = 1;
-    $user->save();
-    
-    $user = new User;
-    $user->firstname = 'Stefan';
-    $user->lastname = 'Zehetbauer';
-    $user->email = 'st.zehetbauer@live.com';
+    $user->firstname = 'Jeff';
+    $user->lastname = 'Strongman';
+    $user->email = 'admin@example.org';
     $user->password = 'test';
-    $user->street = 'Hauptstraße';
-    $user->number = '3';
-    $user->zip = '7081';
-    $user->city = 'Schützen am Gebirge';
-    $user->country = 'Österreich';
+    $user->street = 'Somestreet';
+    $user->number = '123';
+    $user->zip = '1234';
+    $user->city = 'The City';
+    $user->country = 'Somewhere';
     $user->admin = 1;
     $user->save();
     
     $faker = Faker\Factory::create();
     
-    foreach(range(1,200) as $index) {
+    foreach(range(1,200) as $index)
+    {
       $firstname = $faker->firstName();
       $lastname = $faker->lastName();
       User::create([

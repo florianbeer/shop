@@ -2,11 +2,13 @@
 
 class CategoryTableSeeder extends Seeder {
   
-  public function run() {
+  public function run()
+  {
 
     $faker = Faker\Factory::create();
 
-    foreach(range(1,20) as $index) {
+    foreach(range(1,20) as $index)
+    {
       Category::create([
         'name' => $faker->company()
       ]);

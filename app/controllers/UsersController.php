@@ -80,6 +80,12 @@ class UsersController extends \BaseController {
 	 */
 	public function update(User $user)
 	{
+    if($user->admin)
+    {
+      return Redirect::route('users.edit')
+        ->withMessage("Admin user can't be changed.");
+    }
+    
     $validation = Validator::make(Input::all(), User::$updateRules);
 
     if ($validation->fails()) {
@@ -91,7 +97,7 @@ class UsersController extends \BaseController {
 		$user->update(Input::all());
 
     return Redirect::route('users.edit')
-      ->with('message', Lang::get('users.update-success'));
+      ->withMessage(Lang::get('users.update-success'));
 	}
 
 	/**

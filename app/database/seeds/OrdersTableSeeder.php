@@ -2,17 +2,20 @@
 
 class OrdersTableSeeder extends Seeder {
   
-  public function run() {
+  public function run()
+  {
 
     $faker = Faker\Factory::create();
 
-    foreach(range(1,300) as $index) {
+    foreach(range(1,300) as $index)
+    {
       
       $subtotal = null;
       $total = null;
       $items = [];
       
-      foreach(range(1, $faker->randomNumber(1,4)) as $index2) {
+      foreach(range(1, $faker->randomNumber(1,4)) as $index2)
+      {
         $product = Product::find($faker->randomNumber(1,1000));
         $quantity = $faker->randomNumber(1,6);
         array_push($items, [
