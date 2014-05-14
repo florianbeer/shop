@@ -36,5 +36,5 @@ window.setTimeout(function () {
     showAlert();
 		window.setTimeout(function () {
 		    removeAlert();
-		}, 2000);
+		}, 2500);
 }, 200);

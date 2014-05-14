@@ -41,9 +41,8 @@
   <div class="form-group">
     {{ Form::submit(Lang::get('misc.send'), array('class' => 'btn btn-primary pull-right')) }}
   </div>
+  <div class="col-xs-12">&nbsp;</div>
 {{ Form::close() }}
-
-<div class="col-xs-12 visible-sm visible-xs">&nbsp;</div>
 
 @if ($product)
     <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">

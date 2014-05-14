@@ -22,11 +22,10 @@
           @endforeach
       </div>
       <div class="form-group">
-          {{ Form::submit(Lang::get('categories.create-category'), array('class' => 'btn btn-primary ')) }}
+          {{ Form::submit(Lang::get('categories.create-category'), array('class' => 'btn btn-primary pull-right')) }}
       </div>
+      <div class="col-xs-12">&nbsp;</div>
     {{ Form::close() }}
-    
-    <div class="col-xs-12 visible-sm visible-xs">&nbsp;</div>
 
     <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12 table-responsive">
       <table class="table table-condensed" id="admin-categories-table">

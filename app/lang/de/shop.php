@@ -8,7 +8,7 @@ return [
     
     'search-title' => ':count Suchergebnis f&uuml;r &quot;:keyword&quot;|:count Suchergebnisse f&uuml;r &quot;:keyword&quot;',
     
-    'featured'  => 'Unsere besten Artikel',
+    'featured'  => 'Home',
 
     'no-products' => 'Keine Produkte vorhanden',
     

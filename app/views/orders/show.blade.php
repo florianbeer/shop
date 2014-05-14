@@ -9,18 +9,16 @@
 @stop
 
 @section('breadcrumbs')
-  @if(Auth::user()->admin)
   <ol class="breadcrumb hidden-print">
+  @if(Auth::user()->admin)
     <li><a href="{{ URL::route('admin.index') }}">{{ Lang::get('admin.name') }}</a></li>
     <li><a href="{{ URL::route('users.index') }}">{{ Lang::get('users.name') }}</a></li>
     <li class="active">{{ $title }}</li>
-  </ol>
   @else
-  <ol class="breadcrumb hidden-print">
     <li><a href="{{ URL::route('orders.index') }}">{{ Lang::get('orders.history') }}</a></li>
     <li class="active">{{ $title }}</li>
-  </ol>
   @endif
+  </ol>
 @stop
   
 @section('content')
@@ -34,7 +32,7 @@
     @if(Auth::user()->admin)
     <div class="col-xs-8 text-right hidden-print">
       @if(!$order->processed)
-      <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-success">
+      <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-success wow bounceIn" data-wow-delay=".5s" data-wow-duration=".4s">
         <span class="glyphicon glyphicon-ok-circle"></span> {{ Lang::get('orders.mark-as-processed') }}
       </a>
       @else

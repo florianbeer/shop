@@ -7,32 +7,45 @@ body {
   margin-bottom: 100px;
 }
 
-body > .container {
-  padding-top: 30px;
-  margin-bottom: 80px;
+body  {
+  padding-top: 19px;
+  padding-bottom: 80px;
 }
 
-a:hover {
-  text-decoration: none;
+.wrap {
+  width: 100%;
+  background-color: #F3F3F3;
+  margin-bottom: 40px;
+}
+
+.breadcrumb {
+  border-bottom: 1px solid #ddd;
+}
+
+.page-header {
+  border-bottom: 0;
+  min-height: 75px;
+}
+
+h1 {
+  color: #585858;
+  margin-top: 30px;
+}
+
+h1, .navbar-brand {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.navbar-form {
+  margin-top: 13px;
+}
+
+.navbar-collapse.in {
+  overflow-x: hidden;
 }
 
 .media:first-child {
   margin-top: 15px;
-}
-
-.navbar-form {
-  margin-top: 10px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  margin-top: 25px;
-  background-color: #222;
-  padding: 20px;
-  font-size: 85%;
 }
 
 input.qty {
@@ -43,47 +56,8 @@ tr.active {
   white-space: nowrap;
 }
 
-.tooltip-inner {
-    white-space: pre-wrap;
-    min-width: 120px;
-}
-
-@media (max-width: 768px) {
-  #cart-row .col-xs-12 {
-    padding: 0;
-  }
-}
-
-#alert-message {
-  position: fixed;
-  z-index: 9999;
-  width: 100%;
-  min-height: 50px;
-  text-align: center;
-  margin-bottom: 0;
-}
-
-.alert {
-  padding: 14px;
-}
-
-.fade {
-  opacity: 0;
-  -webkit-transition: opacity 0.7s ease;
-  -moz-transition: opacity 0.7s ease;
-  -o-transition: opacity 0.7s ease;
-  transition: opacity 0.7s ease;
-}
-.fade.in {
-  opacity: .98;
-}
-
-.fade.out {
-  opacity: 0;
-}
-
-.h1, h1 {
-  font-size: 26px;
+table a, .table a {
+  text-decoration: none;
 }
 
 #admin-products-table td {
@@ -99,13 +73,21 @@ tr.active {
   color: #585858;
 }
 
-table a, .table a {
-  text-decoration: none;
+#admin-users-table tr {
+  height: 48px;
 }
 
-#report-graph {
-  height: 200px;
-  width: 100%;
+#admin-users-table td {
+  vertical-align: middle;
+}
+
+#admin-users-table .dropdown a.btn {
+  width: 130px;
+}
+
+.tooltip-inner {
+    white-space: pre-wrap;
+    min-width: 120px;
 }
 
 .thumbnail {
@@ -117,5 +99,139 @@ table a, .table a {
 }
 
 .nowrap {
-  white-space: nowrap; 
+  white-space: nowrap;
+}
+
+.btn:focus {
+  border-color: #D8AD52;
+  outline: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(216, 173, 82, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(216, 173, 82, 0.6);
+}
+
+.btn.dropdown-toggle {
+  border-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn-sm + .dropdown-menu a {
+  font-size: 13px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  margin-top: 25px;
+  background-color: #222;
+  padding-top: 30px;
+  font-size: 85%;
+  color: #585858;
+}
+
+#alert-message {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 61px;
+  text-align: center;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.container a {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a.navbar-brand {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;  
+}
+
+.dropdown-menu > li > a, .dropdown-menu > li > a {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s ease;
+  -moz-transition: opacity 0.8s ease;
+  -o-transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease;
+}
+.fade.in {
+  opacity: .98;
+}
+
+.fade.out {
+  opacity: 0;
+}
+
+#report-graph {
+  height: 200px;
+  width: 100%;
+}
+
+@media(max-width:767px){
+  .table-responsive {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  footer .pull-right {
+    float: none !important;
+  }
+}
+
+@media screen{
+  .wrap:after {
+      z-index: -1;
+      position: absolute;
+      left: 50%;
+      margin-left: -11px;
+      content:'';
+      width: 0;
+      height: 0;
+      border-top: solid 11px #F3F3F3;
+      border-left: solid 11px transparent;
+      border-right: solid 11px transparent;
+  }
+
+  footer:before {
+      z-index: 1000;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -16px;
+      content:'';
+      width: 0;
+      height: 0;
+      border-top: solid 16px #fff;
+      border-left: solid 16px transparent;
+      border-right: solid 16px transparent;
+  }
 }

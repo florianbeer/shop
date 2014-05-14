@@ -17,6 +17,7 @@
       <div class="form-group pull-right">
         {{ Form::submit(Lang::get('users.login'), ['class' => 'btn btn-primary']) }}
       </div>
+      <div class="clearfix">&nbsp;</div>
     {{ Form::close() }}
     <div class="col-md-7 col-md-offset-1 well">
       <h3>Demo Login</h3>

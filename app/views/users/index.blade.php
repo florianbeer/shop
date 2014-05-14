@@ -32,7 +32,7 @@
               <td>
                 @if(count($user->orders) > 0)
                 <div class="dropdown">
-                  <a href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">{{ $user->orders->count() }} {{ Lang::choice('orders.name', $user->orders->count()) }} <span class="caret"></span></a>
+                  <a href="#" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">{{ $user->orders->count() }} {{ Lang::choice('orders.name', $user->orders->count()) }} <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                   @foreach($user->orders as $order)
                     <li><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</a></li>

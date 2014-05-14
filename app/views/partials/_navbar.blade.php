@@ -45,12 +45,12 @@
       
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
-        <li class="visible-md visible-lg visible-xs visible-sm">
+        <li>
           <a href="{{ URL::route('users.create') }}">
             <span class="glyphicon glyphicon-plus"></span> {{ Lang::get('users.create') }}
           </a>
         </li>
-        <li class="visible-lg visible-md visible-xs visible-sm">
+        <li>
           <a href="{{ URL::route('users.login') }}"><span class="glyphicon glyphicon-log-in"></span> {{ Lang::get('users.login') }}</a>
         </li>
         @else

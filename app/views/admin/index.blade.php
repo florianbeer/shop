@@ -4,37 +4,31 @@
   <span class="glyphicon glyphicon-dashboard"></span>
 @stop
 
-@section('breadcrumbs')
-  <ol class="breadcrumb hidden-print">
-    <li class="active">{{ Lang::get('admin.name') }}</li>
-  </ol>
-@stop
-  
 @section('content')
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
       <ul class="list-group">
-        <li class="list-group-item">
+        <li class="list-group-item wow slideInLeft">
           <span class="glyphicon glyphicon-user"></span>
           {{ Lang::get('users.name') }}
           <span class="label label-default pull-right">{{$numusers}}</span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item wow slideInLeft" data-wow-delay=".2s">
           <span class="glyphicon glyphicon-th-large"></span>
           {{ Lang::get('categories.name') }}
           <span class="label label-default pull-right">{{ $numcategories }}</span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item wow slideInLeft" data-wow-delay=".3s">
           <span class="glyphicon glyphicon-th"></span>
           {{ Lang::get('products.name') }}
           <span class="label label-default pull-right">{{ $numproducts }}</span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item wow slideInLeft" data-wow-delay=".4s">
           <span class="glyphicon glyphicon-edit"></span>
           {{ Lang::get('orders.processed-orders') }}
           <span class="label label-default pull-right">{{ $numprocessed }}</span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item wow slideInLeft" data-wow-delay=".5s">
           <span class="glyphicon glyphicon-edit"></span>
           {{ Lang::get('orders.unprocessed-orders') }}
           <span class="label label-default pull-right">{{ count($unprocessed) }}</span>
@@ -49,7 +43,7 @@
     </div>
     
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 wow slideInUp">
         <h4>{{ Lang::get('orders.unprocessed-orders') }}</h4>
         <table class="table">
           <thead>

@@ -31,7 +31,7 @@ class OrdersTableSeeder extends Seeder {
       }
       
       Order::create([
-        'user_id' => $faker->randomNumber(3,202),
+        'user_id' => $faker->randomNumber(2,201),
         'subtotal' => $subtotal,
         'total' => $total,
         'items' => json_encode($items),

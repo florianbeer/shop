@@ -10,7 +10,7 @@ return [
   
   'unprocessed-orders' => 'Offene Bestellungen',
   
-  'history' => 'Bestellungs Historie',
+  'history' => 'Bestellungen',
   
   'subtotal' => 'Summe',
   

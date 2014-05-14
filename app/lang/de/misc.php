@@ -50,6 +50,8 @@ return [
   
   'home' => 'Home',
   
-  'saved' => 'Gespeichert'
+  'saved' => 'Gespeichert',
+  
+  'print' => 'Drucken'
   
 ];

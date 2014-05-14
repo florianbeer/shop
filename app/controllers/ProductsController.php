@@ -21,14 +21,17 @@ class ProductsController extends \BaseController {
 
     if ($filter === 'featured')
     {
-      $products = Product::orderBy('created_at', 'DESC')->featured()->inStock()->paginate(10);
+      $title = Lang::get('products.featured');
+      $products = Product::orderBy('created_at', 'DESC')->featured()->paginate(10);
     }
     else if ($filter === 'outofstock')
     {
+      $title = Lang::get('products.out-of-stock');
       $products = Product::orderBy('created_at', 'DESC')->outOfStock()->paginate(10);
     }
     else
     {
+      $title = Lang::get('products.name');
       $products = Product::orderBy('created_at', 'DESC')->paginate(10);
     }
 
@@ -36,7 +39,7 @@ class ProductsController extends \BaseController {
       ->withProduct([])
       ->withMethod('post')
       ->withRoute('products.store')
-      ->withTitle(Lang::get('products.name'))
+      ->withTitle($title)
       ->withCategories(Category::orderBy('created_at', 'DESC')->lists('name', 'id'))
       ->withProducts($products);
 	}
