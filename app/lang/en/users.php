@@ -16,28 +16,28 @@ return [
   
   'logout-message' => 'Logout successfull',
   
-  'register-message' => 'Falls Sie noch kein Kunde sind, können sie hier einfach und schnell einen neuen Account erstellen:',
+  'register-message' => 'If you are not yet a customer, you can create an account easily and quickly here:',
   
-  'create-success' => 'Danke für Ihre Registrierung. Sie sind nun angemeldet.',
+  'create-success' => 'Thanks for registering, you are now logged in',
   
-  'create-account' => 'Neuen Account erstellen',
+  'create-account' => 'Create new account',
   
-  'update-account' => 'Account aktualisieren',
+  'update-account' => 'Update account',
   
-  'update-success' => 'Profil erfolgreich gespeichert',
+  'update-success' => 'Profile saved successfully',
   
-  'firstname' => 'Vorname',
+  'firstname' => 'Fisrtname',
   
-  'lastname' => 'Nachname',
+  'lastname' => 'Lastname',
   
-  'street' => 'Strasse',
+  'street' => 'Street',
   
-  'number' => 'Hausnummer',
+  'number' => 'House number',
   
-  'zip' => 'Postleitzahl',
+  'zip' => 'Zip code',
   
-  'city' => 'Ort',
+  'city' => 'City',
   
-  'country' => 'Land'
+  'country' => 'Country'
   
 ];
