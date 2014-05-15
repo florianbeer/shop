@@ -236,6 +236,16 @@ a.navbar-brand {
   }
 }
 
+::selection {
+	background: #D8AD52;
+  color: white;
+}
+
+::-moz-selection {
+	background: #D8AD52;
+  color: white;  
+}
+
 .flag {
   display: inline-block;
 	width: 16px;
