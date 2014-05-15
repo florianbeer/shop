@@ -34,7 +34,7 @@ class CartController extends \BaseController {
     if ($validation->fails())
     {
       return Redirect::back()
-        ->withErrors($validation);
+        ->withMessage(implode('<br>', $validation->errors()->get('quantity')));
     }
 
     $product = Product::find(Input::get('id'));

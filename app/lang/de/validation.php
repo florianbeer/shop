@@ -55,7 +55,7 @@ return array(
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "Dieses Feld muss eine Zahl enthalten.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "Dieses Feld ist verpflichtend.",
+	"required"             => "Das Feld &quot;:attribute&quot; ist verpflichtend.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -101,7 +101,22 @@ return array(
 
 	'attributes' => array(
 	  'password' => 'Passwort',
-    'quantity' => 'Anzahl'
+    'password_confirmation' => 'Passwort Best&auml;tigung',
+    'quantity' => 'Anzahl',
+    'firstname' => 'Vorname',
+    'lastname' => 'Nachname',
+    'email' => 'Email',
+    'street' => 'Strasse',
+    'number' => 'Hausnummer',
+    'zip' => 'Postleitzahl',
+    'city' => 'Ort',
+    'country' => 'Land',
+    'title' => 'Titel',
+    'description' => 'Beschreibung',
+    'price' => 'Preis',
+    'tax' => 'Steuer',
+    'image' => 'Bild',
+    'name' => 'Kategorie Name'
 	),
 
 );

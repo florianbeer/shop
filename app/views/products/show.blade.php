@@ -15,12 +15,9 @@
       {{ Form::open(['route' => 'cart.store']) }}
       <div class="row">
         {{ Form::hidden('id', $product->id) }}
-        <div class="form-group col-xs-4 {{ $errors->has('quantity') ? 'has-error' : false }}">
+        <div class="form-group col-xs-4">
           {{ Form::label('quantity', Lang::get('shop.quantity'), ['class' => 'control-label']) }}
           {{ Form::text('quantity', 1, ['class' => 'qty form-control input-sm']) }}
-          @foreach($errors->get('quantity') as $message)
-            <span class='help-block'>{{ $message }}</span>
-          @endforeach
         </div>
         <div class="clearfix"></div>
         <div class="form-group col-xs-4">

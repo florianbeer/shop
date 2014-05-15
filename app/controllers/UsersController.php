@@ -46,7 +46,7 @@ class UsersController extends \BaseController {
 
     if ($validation->fails()) {
       return Redirect::route('users.create')
-        ->withErrors($validator)
+        ->withErrors($validation)
         ->withInput();
     }
 
