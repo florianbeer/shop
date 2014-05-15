@@ -1,24 +1,24 @@
-## Laravel PHP Framework
+## 42dev shop
 
-[![Build Status](https://img.shields.io/travis/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Version](https://img.shields.io/github/tag/laravel/framework.svg)](https://github.com/laravel/framework/releases)
-[![Dependency Status](https://www.versioneye.com/php/laravel:framework/badge.svg)](https://www.versioneye.com/php/laravel:framework)
+Webshop application with categories, products, user registration, shopping cart and order management.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+### Installation
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+* Check out repo, ensure directory permissions are correct (mostly: `app/storage/` musst be writeable for the webserver user).
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* Run `composer update`
 
-## Official Documentation
+* Set up your DB credentials in $WEB_ROOT/.env.php
+``
+    <?php
+    return [
+      'DB_HOST' => '127.0.0.1',
+      'DB_NAME' => 'shop',
+      'DB_USER' => 'shop',
+      'DB_PASSWORD' => 'mypassword'
+    ];
+``
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+* Run `php artisan migrate:refresh --seed --env=production` to set up the database and fill it with sample data.
 
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* Add `SetEnv APP_ENV production` to your vhost configuration (if you use Apache) to set the correct environment.
