@@ -75,8 +75,8 @@ return array(
   */
   
   'languages' => [
-    'en' => 'English', 
-    'de' => 'Deutsch'
+    'de' => 'Deutsch',
+    'en' => 'English'
   ],
 
 	/*
