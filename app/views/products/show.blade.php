@@ -25,7 +25,7 @@
         <div class="clearfix"></div>
         <div class="form-group col-xs-4">
           <div class="input-group">
-            <span class="input-group-addon"> <span class="price" data-price="{{ $product->price }}">{{ $product->price }}</span> {{ Config::get('shop.currency-symbol') }}</span>
+            <span class="input-group-addon"><span class="price" data-price="{{ $product->price }}">{{ $product->price }}</span> {{ Config::get('shop.currency-symbol') }}</span>
             <button type="submit" class="btn btn-primary form-control">
               <span class="glyphicon glyphicon-shopping-cart"></span> {{ Lang::get('shop.add-to-cart') }}
             </button>

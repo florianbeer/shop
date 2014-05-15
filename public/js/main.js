@@ -3,7 +3,7 @@ $(function() {
 	// Calculate price based on quantity for detail view
 	$(document).on('keyup', 'input.qty', function() {
 
-		var $priceElement = $(this).parent().next().next().find('.price');
+		var $priceElement = $(this).closest('form').find('.price');
 		var qty 					= parseInt($(this).val());
 		var price 				= parseFloat($priceElement.data('price')) * qty;
 

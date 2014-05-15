@@ -9,13 +9,16 @@
           <h4 class="media-heading"><a href="{{ URL::route('products.show', $product->id) }}">{{ $product->title }}</a></h4>
           <p>{{ nl2br($product->description) }}</p>
           {{ Form::open(['route' => 'cart.store']) }}
+            {{ Form::hidden('quantity', 1) }}
+            {{ Form::hidden('id', $product->id) }}
             <div class="input-group input-group-sm col-xs-4">
-              {{ Form::hidden('quantity', 1) }}
-              {{ Form::hidden('id', $product->id) }}
-              <button type="submit" class="btn btn-primary btn-sm form-control">
-                <span class="glyphicon glyphicon-shopping-cart"></span> {{ Lang::get('shop.add-to-cart') }}
-              </button>
-              <span class="price input-group-addon">{{ $product->price }} {{ Config::get('shop.currency-symbol') }}</span>
+              {{ Form::text('quantity', 1, ['class' => 'qty form-control']) }}
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">
+                  <span class="glyphicon glyphicon-shopping-cart"></span> {{ Lang::get('shop.add-to-cart') }}
+                </button>
+              </span>
+              <span class="input-group-addon price-wrap"><span class="price" data-price="{{ $product->price }}">{{ $product->price }}</span> {{ Config::get('shop.currency-symbol') }}</span>
             </div>
           {{Form::close() }}
         </div>
