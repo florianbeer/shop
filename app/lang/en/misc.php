@@ -52,6 +52,12 @@ return [
   
   'saved' => 'Saved',
   
-  'print' => 'Print'
+  'print' => 'Print',
+  
+  'language-select' => 'Language',
+  
+  'not-found' => 'Not found',
+  
+  'switch-to-language' => 'Switch to :lang'
   
 ];

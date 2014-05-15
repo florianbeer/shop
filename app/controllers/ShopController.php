@@ -70,6 +70,19 @@ class ShopController extends \BaseController {
     return View::make('shop.sitemap')
       ->withCategories($categories)
       ->withProducts($products);
-	}  
+	}
+
+	/**
+	 * Switches between available Languages
+	 * GET /switchLanguage/{$language}
+	 *
+	 * @return Response
+	 */  
+  public function switchLanguage($lang)
+  {
+    Session::put('language', $lang);
+    Config::set('app.locale',  $lang);
+    return Redirect::back();
+  }
 
 }

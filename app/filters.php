@@ -96,3 +96,53 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Language Route Filter
+|--------------------------------------------------------------------------
+|
+| Tries to determine the users request language settings
+|
+*/
+
+Route::before(function()
+{
+  // Set default session language if none is set
+  if(!Session::has('language'))
+  {
+      // detect browser language
+      $headerlang = Request::server('http_accept_language');
+      if(isset($headerlang))
+      {
+          $headerlang = substr(Request::server('http_accept_language'), 0, 2);
+
+          if(array_key_exists($headerlang, Config::get('app.languages')))
+          {
+              // browser lang is supported, use it
+              $lang = $headerlang;
+          }
+          // use default application lang
+          else
+          {
+              $lang = Config::get('app.locale');
+          }
+      }
+      // use default
+      else
+      {
+        // use default application lang
+        $lang = Config::get('app.locale');
+      }
+
+      // set application language for that user
+      Session::put('language', $lang);
+      Config::set('app.locale',  $lang);
+  }
+  // session is available
+  else
+  {
+      // set application to session lang
+      Config::set('app.locale', Session::get('language'));
+  }
+});

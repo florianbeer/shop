@@ -52,6 +52,12 @@ return [
   
   'saved' => 'Gespeichert',
   
-  'print' => 'Drucken'
+  'print' => 'Drucken',
+  
+  'language-select' => 'Language',
+  
+  'no-found' => 'Seite nicht gefunden',
+  
+  'switch-to-language' => 'Sprache auf :lang &auml;ndern'
   
 ];

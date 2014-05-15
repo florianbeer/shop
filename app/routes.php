@@ -5,6 +5,7 @@
 Route::get('/', ['uses' => 'ShopController@index', 'as' => 'home']);
 Route::get('contact', ['uses' => 'ShopController@contact', 'as' => 'contact']);
 Route::get('sitemap.xml', 'ShopController@sitemap');
+Route::get('switchLanguage/{lang}', ['uses' => 'ShopController@switchLanguage', 'as' => 'switchLanguage']);
 
 /*
  * Product resource
