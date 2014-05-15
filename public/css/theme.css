@@ -14,7 +14,7 @@ body  {
 
 .wrap {
   width: 100%;
-  background-color: #F3F3F3;
+  background-color: #F5F5F5;
   margin-bottom: 40px;
 }
 
@@ -216,7 +216,7 @@ a.navbar-brand {
       content:'';
       width: 0;
       height: 0;
-      border-top: solid 11px #F3F3F3;
+      border-top: solid 11px #F5F5F5;
       border-left: solid 11px transparent;
       border-right: solid 11px transparent;
   }
