@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.home')
 
 @section('icon')
   @if ($query)
@@ -13,21 +13,6 @@
 @stop
 
 @section('content')
-  @if (!isset($query))
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>Welcome to the <strong>Demo</strong>.</h3>
-      <p>
-        Login information is available on the {{ HTML::linkRoute('users.login', 'login page') }}.<br>
-      </p>
-      <p>
-        All sample data will be refreshed every 24 hours.<br>
-        Feel free to browse around, add, edit, delete, order etc. 
-      </p>
-      <hr>
-    </div>
-  </div>
-  @endif
   @if(count($products) > 0)
     @include('partials._products')
   @else

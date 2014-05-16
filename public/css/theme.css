@@ -18,6 +18,32 @@ body  {
   margin-bottom: 40px;
 }
 
+.wrap-home {
+  width: 100%;
+  background-color: #F5F5F5;
+  margin-bottom: 40px;
+  height: 350px;
+  background: url('../img/white_sands.jpg') no-repeat top center fixed;
+  background-size: cover;
+}
+
+.wrap-home p {
+  color: #fff;
+  font-size: 18px;
+}
+
+.wrap-home p a {
+  color: #585858;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;  
+}
+
+.wrap-home p a:hover {
+  color: #D8AD52;
+}
+
 .breadcrumb {
   border-bottom: 1px solid #ddd;
 }
