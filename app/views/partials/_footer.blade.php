@@ -5,7 +5,7 @@
         <p>&copy;{{ date('Y') }} <a href="http://42dev.eu">42dev</a> - {{ Lang::get('misc.footer-text') }}.</p>
       </div>
       <div class="col-sm-6">
-        <div class="pull-right">
+        <div class="pull-right nowrap">
           <a href="#">Imprint</a> |
           <a href="#">Privacy policy</a> |
           <a href="#">Terms of service</a> |
