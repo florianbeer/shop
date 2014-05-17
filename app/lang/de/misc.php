@@ -42,7 +42,7 @@ return [
   
   'items' => 'Artikel',
   
-  'created-at' => 'Erstellt am',
+  'created-at' => 'Erstellt',
   
   'error-generic' => 'Ein Fehler ist aufgetreten',
   

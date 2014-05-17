@@ -27,7 +27,7 @@
       <div class="col-xs-12">&nbsp;</div>
     {{ Form::close() }}
 
-    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12 table-responsive">
+    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
       <table class="table table-condensed" id="admin-categories-table">
         <thead>
           <tr class="active">
@@ -40,7 +40,7 @@
             <tr>
               <td>{{ HTML::linkRoute('categories.edit', $category->name, [$category->id]) }}</td>
               <td class="text-center">
-                  <a href="{{ URL::route('categories.destroy', [$category->id]) }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                  <a href="{{ URL::route('categories.destroy', [$category->id]) }}" class="text-danger"><span class="glyphicon glyphicon-remove"></span></a>
               </td>
             </tr>
           @endforeach

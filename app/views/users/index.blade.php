@@ -14,8 +14,8 @@
 @section('content')
 
   <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table" id="admin-users-table">
+    <div class="col-xs-12">
+      <table class="table rwd-table" id="admin-users-table">
         <thead>
           <tr class="active">
             <th>{{ Lang::get('misc.name') }}</th>
@@ -27,26 +27,21 @@
         <tbody>
           @foreach($users as $user)
             <tr>
-              <td>{{ $user->firstname }} {{ $user->lastname }}</td>
-              <td>{{ $user->email }}</td>
-              <td>
-                @if(count($user->orders) > 0)
+              <td data-th="{{ Lang::get('misc.name') }}">{{ $user->firstname }} {{ $user->lastname }}</td>
+              <td data-th="{{ Lang::get('misc.email') }}">{{ $user->email }}</td>
+              <td data-th="{{ Lang::choice('orders.name', 2) }}">
                 <div class="dropdown">
-                  <a href="#" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">{{ $user->orders->count() }} {{ Lang::choice('orders.name', $user->orders->count()) }} <span class="caret"></span></a>
+                  <a href="#" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">{{ $user->orders->count() }} {{ Lang::choice('orders.name', $user->orders->count()) }} @if(count($user->orders) > 0)<span class="caret"></span>@endif</a>
+                  @if(count($user->orders) > 0)
                   <ul class="dropdown-menu">
                   @foreach($user->orders as $order)
                     <li><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</a></li>
                   @endforeach
                   </ul>
+                  @endif
                 </div>
-                @endif
               </td>
-              <td>
-                <span class="text-muted" title="{{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}"
-                  data-toggle="tooltip" data-placement="left">
-                  {{ Carbon::createFromTimeStamp(strtotime($user->created_at))->diffForHumans() }}
-                </span>
-              </td>
+              <td data-th="{{ Lang::get('misc.created-at') }}" {{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>
             </tr>
           @endforeach
         </tbody>

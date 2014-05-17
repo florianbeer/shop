@@ -25,7 +25,7 @@
     
     @include('partials._product-form')
     
-    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12 table-responsive">
+    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
       <table class="table table-condensed" id="admin-products-table">
         <thead>
           <tr class="active">
@@ -60,13 +60,13 @@
               </td>
               <td class="text-center">
                 @if ($product->availability)
-                  <a href="{{ URL::route('products.toggleavailability', [$product->id]) }}"><span class="glyphicon glyphicon-ok-sign"></span></a>
+                  <a href="{{ URL::route('products.toggleavailability', [$product->id]) }}" class="text-success"><span class="glyphicon glyphicon-ok-sign"></span></a>
                 @else
-                  <a href="{{ URL::route('products.toggleavailability', [$product->id]) }}"><span class="glyphicon glyphicon-minus-sign"></span></a>
+                  <a href="{{ URL::route('products.toggleavailability', [$product->id]) }}" class="text-danger"><span class="glyphicon glyphicon-minus-sign"></span></a>
                 @endif
               </td>
               <td class="text-center">
-                  <a href="{{ URL::route('products.destroy', [$product->id]) }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                  <a href="{{ URL::route('products.destroy', [$product->id]) }}" class="text-danger"><span class="glyphicon glyphicon-remove"></span></a>
               </td>
             </tr>
           @endforeach

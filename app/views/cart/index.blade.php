@@ -8,47 +8,41 @@
   <div class="row" id="cart-row">
     <div class="col-xs-12 table-responsive">
       {{ Form::open(['route' => 'orders.store']) }}
-        <table class="table" id="cart-products-table">
+        <table class="table rwd-table">
           <thead>
             <tr class="active">
-              <th class="hidden-print"></th>
               <th>{{ Lang::get('shop.quantity') }}</th>
               <th>{{ Lang::get('orders.item') }}</th>
               <th class="text-right">{{ Lang::get('orders.unit-price') }}</th>
               <th class="text-right">{{ Lang::get('orders.subtotal') }}</th>
+              <th class="hidden-print"></th>
             </tr>
           </thead>
           <tbody>
           @foreach($products as $product)
-            <tr>
-              <td class="hidden-print">
-                <a href="{{ URL::route('cart.destroy', $product->identifier) }}" class="btn btn-xs btn-default"  title="Remove item"
-                  data-toggle="tooltip" data-placement="right">
-                  <span class="glyphicon glyphicon-remove"></span>
-                </a>
-              </td>
-              <td class="nowrap">
+            <tr class="text-center">
+              <td class="nowrap" data-th="{{ Lang::get('shop.quantity') }}">
                 <a class="qty-down" href="{{ URL::route('cart.qtydown', $product->identifier) }}"><span class="glyphicon glyphicon-minus"></span></a>
                 <span class="text-muted badge">{{ $product->quantity }}&times;</span>
                 <a class="qty-up" href="{{ URL::route('cart.qtyup', $product->identifier) }}"><span class="glyphicon glyphicon-plus"></span></a>
               </td>
-              <td>
+              <td data-th="{{ Lang::get('orders.item') }}">
                 {{ HTML::linkRoute('products.show', $product->name, $product->id) }}
               </td>
-              <td class="text-right">
+              <td class="text-right" data-th="{{ Lang::get('orders.unit-price') }}">
                 {{ $product->price }} {{ Config::get('shop.currency-symbol') }}
                 <small class="text-muted">({{ $product->tax }}% Tax)</small>
                 </td>
-              <td class="text-right">{{ $product->total() }} {{ Config::get('shop.currency-symbol') }}</td>
+              <td class="text-right" data-th="{{ Lang::get('orders.subtotal') }}">{{ $product->total() }} {{ Config::get('shop.currency-symbol') }}</td>
+              <td class="hidden-print" data-th="{{ Lang::get('misc.delete') }}"><a href="{{ URL::route('cart.destroy', $product->identifier) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>
           @endforeach
-            <tr class="active">
-              <td class="hidden-print"></td>
-              <td colspan="3" class="text-right">
-                {{ Lang::get('orders.subtotal') }}: {{ money_format('%!.2n', Cart::total(false)) }} {{ Config::get('shop.currency-symbol') }}
+            <tr class="active text-right">
+              <td colspan="4" data-th="{{ Lang::get('orders.subtotal') }}">
+                <span class="hidden-xs">{{ Lang::get('orders.subtotal') }}: </span>{{ money_format('%!.2n', Cart::total(false)) }} {{ Config::get('shop.currency-symbol') }}
               </td>
-              <td class="text-right">
-                <strong>{{ Lang::get('orders.total') }}: {{ money_format('%!.2n', Cart::total()) }} {{ Config::get('shop.currency-symbol') }}</strong>
+              <td data-th="{{ Lang::get('orders.total') }}">
+                <strong><span class="hidden-xs">{{ Lang::get('orders.total') }}: </span>{{ money_format('%!.2n', Cart::total()) }} {{ Config::get('shop.currency-symbol') }}</strong>
               </td>
             </td>
           </tbody>

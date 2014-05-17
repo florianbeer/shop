@@ -90,6 +90,71 @@ input.qty {
   text-overflow: ellipsis;
 }
 
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  padding-top: .7em;
+}
+
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 7.5em;
+  display: inline-block;
+}
+
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+
+@media (min-width: 767px) {
+
+  .rwd-table td:before {
+    display: none;
+  }
+
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: .5em;
+  }
+
+  .rwd-table th, .rwd-table td {
+    text-align: inherit;
+  }  
+}
+
+.rwd-table .dropdown {
+  display: inline;
+}
+
 tr.active {
   white-space: nowrap;
 }
@@ -102,21 +167,8 @@ table a, .table a {
   vertical-align: middle;
 }
 
-#admin-products-table td .glyphicon, #admin-categories-table td .glyphicon {
-  font-size: 25px;
-  color: #333;
-}
-
-#admin-products-table td .glyphicon:hover, #admin-categories-table td .glyphicon:hover {
-  color: #585858;
-}
-
-#admin-users-table tr {
-  height: 48px;
-}
-
-#admin-users-table td {
-  vertical-align: middle;
+td .glyphicon {
+  font-size: 23px;
 }
 
 #admin-users-table .dropdown a.btn {
@@ -271,6 +323,54 @@ a.navbar-brand {
       border-top: solid 16px #fff;
       border-left: solid 16px transparent;
       border-right: solid 16px transparent;
+  }
+}
+
+/*
+ * Off Canvas navbar toggle right
+ * --------------------------------------------------
+ */
+
+@media screen and (max-width: 768px) {
+  .row-offcanvas .collapsing {
+	-webkit-transition: none 0;
+    -moz-transition: none 0;
+    transition: none 0;
+  }
+ .row-offcanvas .navbar {
+	position: absolute;
+	z-index: 2;
+    right:0;
+    height:100%;
+    width:55px;
+    border:0;
+    background-color:transparent;
+  }
+  .row-offcanvas .navbar-toggle {
+    margin-right: 5px;
+  	margin-left: 5px;
+  }
+  .row-offcanvas {
+    position: relative;
+  }
+  .row-offcanvas-right.active .navbar {
+	position: absolute;
+	z-index: 2;
+    right: -28.4%;
+    width:40%;
+    background-color:#eee;
+    border:0 solid #ddd;
+    border-left-width:1px;
+  }
+  .row-offcanvas-right.active {
+    left: -30%;
+  }  
+  .row-offcanvas-right.active .navbar-collapse {
+    position: relative;
+    width: 100%;
+  }  
+  .row-offcanvas .content {
+	/*width:calc(100% - 60px);*/
   }
 }
 

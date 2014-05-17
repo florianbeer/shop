@@ -45,27 +45,27 @@
     <div class="row">
       <div class="col-xs-12 wow slideInUp">
         <h4>{{ Lang::get('orders.unprocessed-orders') }}</h4>
-        <table class="table">
+        <table id="admin-orders-table" class="table rwd-table">
           <thead>
             <tr class="active">
               <th>{{ Lang::get('orders.order-number') }}</th>
               <th>{{ Lang::get('misc.name') }}</th>
               <th>{{ Lang::get('misc.items') }}</th>
               <th>{{ Lang::get('misc.created-at') }}</th>
-              <th>&nbsp;</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
           @foreach($unprocessed as $order)
             <tr>
-              <td>{{ $order->id }}</td>
-              <td><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->user->firstname }} {{ $order->user->lastname }}</a></td>
-              <td><span class="badge">{{count(json_decode($order->items)) }}</span></td>
-              <td>{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>
-              <td>
-                <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-success btn-sm"
-                  title="{{ Lang::get('orders.process') }}" data-toggle="tooltip" data-placement="left">
-                  <span class="glyphicon glyphicon-ok-circle"></span>
+              <td data-th="{{ Lang::get('orders.order-number') }}">{{ $order->id }}</td>
+              <td data-th="{{ Lang::get('misc.name') }}"><a href="{{ URL::route('orders.show', $order->id) }}">{{ $order->user->firstname }} {{ $order->user->lastname }}</a></td>
+              <td data-th="{{ Lang::get('misc.items') }}"><span class="badge">{{count(json_decode($order->items)) }}</span></td>
+              <td data-th="{{ Lang::get('misc.created-at') }}">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>              
+              <td data-th="{{ ucfirst(Lang::get('orders.process')) }}">
+                <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="text-success"
+                  title="{{ Lang::get('orders.process') }}" data-toggle="tooltip" data-placement="top">
+                  <span class="glyphicon glyphicon-ok"></span>
                 </a>
               </td>
             </tr>

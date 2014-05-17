@@ -33,11 +33,11 @@
     <div class="col-xs-8 text-right hidden-print">
       @if(!$order->processed)
       <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-success wow bounceIn" data-wow-delay=".5s" data-wow-duration=".4s">
-        <span class="glyphicon glyphicon-ok-circle"></span> {{ Lang::get('orders.mark-as-processed') }}
+        <span class="glyphicon glyphicon-ok"></span> {{ Lang::get('orders.mark-as-processed') }}
       </a>
       @else
-      <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus-sign"></span> {{ Lang::get('orders.reopen') }}
+      <a href="{{ URL::route('orders.toggleprocessed', $order->id) }}" class="btn btn-default wow bounceIn" data-wow-delay=".5s" data-wow-duration=".4s">
+        <span class="glyphicon glyphicon-plus"></span> {{ Lang::get('orders.reopen') }}
       </a>
       @endif
     </div>

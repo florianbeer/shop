@@ -42,7 +42,7 @@ return [
   
   'items' => 'Items',
   
-  'created-at' => 'Created at',
+  'created-at' => 'Created',
   
   'error-generic' => 'An error occured',
   
