@@ -32,6 +32,6 @@ return [
   
   'not-found-message' => 'Order not found',
   
-  'order-success-message' => 'Thanl you for ordering. You will receive further details in your email.'
+  'order-success-message' => 'Thank you for ordering. You will receive further details in your email.'
     
 ];

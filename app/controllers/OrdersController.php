@@ -50,7 +50,7 @@ class OrdersController extends \BaseController {
     Cart::destroy();
 
     return Redirect::home()
-      ->with('message', Lang::get('order-success-message'));
+      ->with('message', Lang::get('orders.order-success-message'));
   }
 
 	/**

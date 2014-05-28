@@ -22,7 +22,7 @@ class AdminController extends \BaseController {
     $unprocessed = Order::orderBy('created_at', 'DESC')->unprocessed()->with('user')->get();
     $now = Carbon::now()->setTime(00,00,00)->toDateTimeString();
     $lastMonth = Carbon::now()->subMonth(1)->toDateTimeString();
-    $reports = DB::select(DB::raw("SELECT sum(total) totals, DATE(created_at) day FROM orders 
+    $reports = DB::select(DB::raw("SELECT sum(total) totals, DATE(created_at) day FROM orders
       WHERE created_at BETWEEN '$lastMonth' AND '$now'
       GROUP BY DAY(created_at) ORDER BY created_at ASC"
     ));

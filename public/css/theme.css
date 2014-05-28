@@ -37,7 +37,7 @@ body  {
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;  
+  transition: all 0.3s ease-out;
 }
 
 .wrap-home p a:hover {
@@ -139,7 +139,7 @@ input.qty {
   }
 
   .rwd-table th:first-child, .rwd-table td:first-child {
-    padding-left: 0;
+    padding-left: .5em;
   }
 
   .rwd-table th:last-child, .rwd-table td:last-child {
@@ -148,7 +148,7 @@ input.qty {
 
   .rwd-table th, .rwd-table td {
     text-align: inherit;
-  }  
+  }
 }
 
 .rwd-table .dropdown {
@@ -248,7 +248,7 @@ a.navbar-brand {
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;  
+  transition: all 0.5s ease;
 }
 
 .dropdown-menu > li > a, .dropdown-menu > li > a {
@@ -364,11 +364,11 @@ a.navbar-brand {
   }
   .row-offcanvas-right.active {
     left: -30%;
-  }  
+  }
   .row-offcanvas-right.active .navbar-collapse {
     position: relative;
     width: 100%;
-  }  
+  }
   .row-offcanvas .content {
 	/*width:calc(100% - 60px);*/
   }
@@ -381,7 +381,7 @@ a.navbar-brand {
 
 ::-moz-selection {
 	background: #D8AD52;
-  color: white;  
+  color: white;
 }
 
 .flag {

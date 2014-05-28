@@ -3,7 +3,7 @@
 @section('icon')
   <span class="glyphicon glyphicon-edit"></span>
 @stop
-  
+
 @section('print')
   @include('partials._print-button')
 @stop
@@ -20,15 +20,15 @@
   @endif
   </ol>
 @stop
-  
+
 @section('content')
-  
+
   <div class="row">
     <div class="col-xs-4 text-left">
       <span class="text-muted">{{ $order->created_at->formatLocalized(Config::get('shop.date-long')) }}</span>
       <h4 class="text-muted">{{ $order->user->firstname }} {{ $order->user->lastname }}</h4>
     </div>
-    
+
     @if(Auth::user()->admin)
     <div class="col-xs-8 text-right hidden-print">
       @if(!$order->processed)
@@ -42,7 +42,7 @@
       @endif
     </div>
     @endif
-    
+
     <div class="col-xs-8 text-right visible-print">
       {{ $order->user->email }}<br>
       {{ $order->user->street }}
@@ -58,7 +58,7 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <table class="table">
+      <table class="table rwd-table">
         <thead>
           <tr class="active">
             <th>{{ Lang::get('orders.item') }}</th>
@@ -69,16 +69,16 @@
         <tbody>
         @foreach(json_decode($order->items) as $product)
           <tr>
-            <td><span class="text-muted badge">{{ $product->quantity }}&times;</span> {{ $product->name }}</td>
-            <td class="text-right">
+            <td data-th="{{ Lang::get('orders.item') }}"><span class="badge">{{ $product->quantity }}&times;</span> {{ $product->name }}</td>
+            <td data-th="{{ Lang::get('orders.unit-price') }}">
               {{ $product->price }} {{ Config::get('shop.currency-symbol') }}
               <small class="text-muted">({{ $product->tax }}% {{ Lang::get('misc.tax') }})</small>
               </td>
-            <td class="text-right">{{ money_format('%!.2n', ($product->price + $product->price * $product->tax/100) * $product->quantity) }} {{ Config::get('shop.currency-symbol') }}</td>
+            <td data-th="{{ Lang::get('orders.subtotal') }}" class="text-right">{{ money_format('%!.2n', ($product->price + $product->price * $product->tax/100) * $product->quantity) }} {{ Config::get('shop.currency-symbol') }}</td>
           </tr>
         @endforeach
-          <tr class="active">
-            <td colspan="2" class="text-right">
+          <tr class="active text-right">
+            <td colspan="2">
               {{ Lang::get('orders.subtotal') }}: {{ money_format('%!.2n', $order->subtotal) }} {{ Config::get('shop.currency-symbol') }}
             </td>
             <td class="text-right">

@@ -12,7 +12,7 @@
           <a href="/contact">Contact us</a> |
           <span class="nowrap">
           @foreach(Config::get('app.languages') as $locale => $language)
-            <a href="{{ URL::route('switchLanguage', $locale) }}" title="{{ Lang::get('misc.switch-to-language', ['lang' => $language]) }}"><div class="flag flag-{{ $locale }}"></div></a>
+            <a href="{{ URL::route('switchLanguage', $locale) }}" title="{{ Lang::get('misc.switch-to-language', ['lang' => $language]) }}"><span class="flag flag-{{ $locale }}"></span></a>
           @endforeach
           </span>
         </div>
