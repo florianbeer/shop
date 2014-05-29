@@ -326,52 +326,45 @@ a.navbar-brand {
   }
 }
 
-/*
- * Off Canvas navbar toggle right
- * --------------------------------------------------
- */
+.container.side-collapse-container {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 @media screen and (max-width: 768px) {
-  .row-offcanvas .collapsing {
-	-webkit-transition: none 0;
-    -moz-transition: none 0;
-    transition: none 0;
-  }
- .row-offcanvas .navbar {
-	position: absolute;
-	z-index: 2;
-    right:0;
-    height:100%;
-    width:55px;
-    border:0;
-    background-color:transparent;
-  }
-  .row-offcanvas .navbar-toggle {
-    margin-right: 5px;
-  	margin-left: 5px;
-  }
-  .row-offcanvas {
-    position: relative;
-  }
-  .row-offcanvas-right.active .navbar {
-	position: absolute;
-	z-index: 2;
-    right: -28.4%;
-    width:40%;
-    background-color:#eee;
-    border:0 solid #ddd;
-    border-left-width:1px;
-  }
-  .row-offcanvas-right.active {
-    left: -30%;
-  }
-  .row-offcanvas-right.active .navbar-collapse {
-    position: relative;
+  .side-collapse-container{
     width: 100%;
+    position: relative;
+    left: 0;
+    transition: left .4s;
   }
-  .row-offcanvas .content {
-	/*width:calc(100% - 60px);*/
+
+  .side-collapse-container.out{
+      left: 260px;
   }
+
+  .navbar-collapse {
+    width: 260px;
+  }
+
+  .side-collapse {
+      top: 50px;
+      bottom: 0;
+      left: 0;
+      width: 260px;
+      position: fixed;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transition: width .4s;
+  }
+
+  .side-collapse.in {
+      width: 0;
+  }
+}
+
+.row {
+  max-width: 100%;
 }
 
 ::selection {
