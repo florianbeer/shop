@@ -10,7 +10,7 @@
 
 
 @include('partials._navbar')
-<div class="container side-collapse-container">
+<div class="side-collapse-container">
   <div class="wrap-home">
     <div class="container" id="main" role="main">
       <div class="row">
