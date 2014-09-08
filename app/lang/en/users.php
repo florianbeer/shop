@@ -26,7 +26,7 @@ return [
   
   'update-success' => 'Profile saved successfully',
   
-  'firstname' => 'Fisrtname',
+  'firstname' => 'Firstname',
   
   'lastname' => 'Lastname',
   
