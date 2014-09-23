@@ -84,7 +84,7 @@
             <td class="text-right">
               <strong>{{ Lang::get('orders.total') }}: {{ money_format('%!.2n', $order->total) }} {{ Config::get('shop.currency-symbol') }}</strong>
             </td>
-          </td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
   <ol class="breadcrumb hidden-print">
-    <li><a href="/admin">Admin</a></li>
+    <li>{{ HTML::linkRoute('admin.index', Lang::get('admin.name')) }}</li>
     <li>{{ HTML::linkRoute('categories.index', Lang::get('categories.name')) }}</li>
     <li class="active">{{ $category->name }}</li>
   </ol>

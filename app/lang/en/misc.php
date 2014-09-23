@@ -56,8 +56,6 @@ return [
 
   'language-select' => 'Language',
 
-  'not-found' => 'Not found',
-
   'switch-to-language' => ':lang',
 
   'language' => 'Language'

@@ -2,21 +2,21 @@
 
 return [
 
-  'title'           => '42dev Shop',
+    'title'           => '42dev Shop',
 
-  'email'           => 'shop@42dev.net',
+    'email'           => 'shop@42dev.net',
 
-  'name'            => '42dev Shop',
+    'name'            => '42dev Shop',
 
-  'locale'          => 'de_AT',
+    'locale'          => 'de_AT',
 
-  'currency-symbol' => '&euro;',
+    'currency-symbol' => '&euro;',
 
-  'items-per-page'  => '6',
+    'items-per-page'  => '6',
 
-  'date-short'      => '%d. %b',
+    'date-short'      => '%d. %b',
 
-  'date-long'       => '%a, %d. %b %Y %H:%M',
+    'date-long'       => '%a, %d. %b %Y %H:%M',
 
 ];
   

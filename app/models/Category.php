@@ -1,6 +1,6 @@
 <?php
 
-class Category extends Eloquent {
+class Category extends \Eloquent {
   
   protected $fillable = ['name'];
   

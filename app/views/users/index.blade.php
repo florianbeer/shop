@@ -41,7 +41,7 @@
                   @endif
                 </div>
               </td>
-              <td data-th="{{ Lang::get('misc.created-at') }}" {{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>
+              <td data-th="{{ Lang::get('misc.created-at') }}"> {{ $user->created_at->formatLocalized(Config::get('shop.date-long')) }}</td>
             </tr>
           @endforeach
         </tbody>

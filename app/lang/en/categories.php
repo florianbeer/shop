@@ -10,7 +10,7 @@ return [
   
   'delete-message' => 'This category still contains :num products.',
   
-  'delete-question' => 'Which category do you want to move them before deleting?',
+  'delete-question' => 'Which category do you want to move them to before deleting?',
   
   'move-and-delete' => 'Move products and delete',
   

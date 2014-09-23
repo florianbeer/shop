@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
   <ol class="breadcrumb hidden-print">
-    <li><a href="/admin">{{ Lang::get('admin.name') }}</a></li>
+    <li>{{ HTML::linkRoute('admin.index', Lang::get('admin.name')) }}</li>
     @if (Input::get('filter') === 'featured')
       <li class="active">{{ HTML::linkRoute('products.index', Lang::get('products.name')) }}</li>
       <li class="active">{{ Lang::get('products.featured') }}</li>

@@ -5,6 +5,16 @@
 @stop
   
 @section('content')
+  <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+            {{ Form::select('shipping_id', $shipping, null, ['class' => "form-control"]) }}
+        </div>
+        <div class="form-group">
+            {{ Form::select('payment_id', $payment, null, ['class' => "form-control"]) }}
+        </div>
+      </div>
+  </div>
   <div class="row" id="cart-row">
     <div class="col-xs-12 table-responsive">
       {{ Form::open(['route' => 'orders.store']) }}
@@ -44,7 +54,7 @@
               <td data-th="{{ Lang::get('orders.total') }}">
                 <strong><span class="hidden-xs">{{ Lang::get('orders.total') }}: </span>{{ money_format('%!.2n', Cart::total()) }} {{ Config::get('shop.currency-symbol') }}</strong>
               </td>
-            </td>
+            </tr>
           </tbody>
         </table>
     </div>

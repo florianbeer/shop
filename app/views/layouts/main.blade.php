@@ -4,7 +4,6 @@
 <div class="alert alert-warning alert-dismissable fade" data-alert="alert" id="alert-message">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     {{ Session::get('message') }}
-  </div>
 </div>
 @endif
 

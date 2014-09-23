@@ -10,6 +10,6 @@ return [
   
   'continue-shopping' => 'Weiter einkaufen',
   
-  'check-out' => 'Bestellen'
+  'check-out' => 'Kostenpflichtig Bestellen'
   
 ];

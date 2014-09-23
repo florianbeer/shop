@@ -154,7 +154,7 @@ body, td { font-family: HelveticaNeue, sans-serif; }
             <td class="w580" width="580">
                 <div align="center" id="headline">
                     <p>
-                        <strong><a href="http://shop.42dev.eu">{{ Config::get('shop.title') }}</a></strong>
+                        <strong><a href="{{ Config::get('app.url') }}">{{ Config::get('shop.title') }}</a></strong>
                     </p>
                 </div>
             </td>
@@ -179,7 +179,7 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                       <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
                           <tbody><tr>
                               <td class="w275" width="275">
-                                  <p align="left" class="email-title">Ihre Bestellung im {{ Config::get('shop.title') }}</p>
+                                  <p align="left" class="email-title">{{ Lang::get('mails.order-create-greeting') }} {{ Config::get('shop.title') }}</p>
                                   <div align="left" class="article-content"></div>
                               </td>
                           </tr>
@@ -189,7 +189,7 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                         <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
                                 <td class="w275" width="275">
-                                    <p align="left" class="article-title">{{ $product->quantity }}x {{ $product->name}}</p>
+                                    <p align="left" class="article-title">{{ $product->quantity }}x {{ $product->name }}</p>
                                     <div align="right" class="article-content">{{ money_format('%!.2n', ($product->price + $product->price * $product->tax/100) * $product->quantity) }} {{ Config::get('shop.currency-symbol') }}</div>
                                 </td>
                             </tr>
@@ -199,7 +199,7 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                       <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
                           <tbody><tr>
                               <td class="w275" width="275">
-                                  <p align="right" class="article-title" style="border-top:1px solid #aaa">Summe: {{ money_format('%!.2n', $order['total']) }} {{ Config::get('shop.currency-symbol') }}</p>
+                                  <p align="right" class="article-title" style="border-top:1px solid #aaa">{{ Lang::get('orders.total') }}: {{ money_format('%!.2n', $order['total']) }} {{ Config::get('shop.currency-symbol') }}</p>
                                   <div align="right" class="article-content"></div>
                               </td>
                           </tr>
@@ -208,7 +208,7 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                       <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
                           <tbody><tr>
                               <td class="w275" width="275">
-                                  <p align="left" class="article-title">Lieferung an:</p>
+                                  <p align="left" class="article-title">:</p>
                                   <div align="left" class="article-content">
                                     {{ $user['firstname'] }} {{ $user['lastname'] }}<br>
                                     {{ $user['street'] }} {{ $user['number'] }}<br>
@@ -240,8 +240,8 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                   <tbody><tr><td class="w140" width="140" height="15"></td></tr>
                   <tr>
                       <td class="w140" width="140">
-                          <p align="left" class="left-column-subhead">Zahlung</p>
-                          <div align="left" class="left-column-content">Per Nachname</div>
+                          <p align="left" class="left-column-subhead">{{ Lang::get('orders.payment-method') }}</p>
+                          <div align="left" class="left-column-content">{{-- $order['payment'] --}}</div>
                       </td>
                   </tr>
               </tbody></table>
@@ -249,8 +249,8 @@ body, td { font-family: HelveticaNeue, sans-serif; }
                   <tbody><tr><td class="w140" width="140" height="15"></td></tr>
                   <tr>
                       <td class="w140" width="140">
-                          <p align="left" class="left-column-subhead">Lieferung</p>
-                          <div align="left" class="left-column-content">Per UPS</div>
+                          <p align="left" class="left-column-subhead">{{ Lang::get('orders.shipping-method') }}</p>
+                          <div align="left" class="left-column-content">{{--$order['shipping'] --}}</div>
                       </td>
                   </tr>
               </tbody></table>

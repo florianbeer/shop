@@ -1,6 +1,6 @@
 <?php namespace Shop\Mailers;
 
-use Mail;
+use \Mail;
 
 abstract class Mailer {
 
