@@ -17,8 +17,12 @@ return array(
 
 	"user" => "We can't find a user with that e-mail address.",
 
-	"token" => "This password reset token is invalid.",
+	"token" => "Invalid password reset token",
 
-	"sent" => "Password reminder sent!",
+	"sent" => "Password reminder sent.",
+
+    'mail-subject' => 'Password reset',
+
+    'mail-body' => 'To change your password, please complete the following form: '
 
 );

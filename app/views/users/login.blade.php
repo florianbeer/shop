@@ -3,9 +3,9 @@
 @section('icon')
   <span class="glyphicon glyphicon-log-in"></span>
 @stop
-  
+
 @section('content')
-  
+
   <div class="row">
     {{ Form::open(['route' => 'users.login', 'class' => 'col-lg-4 col-md-4']) }}
       <div class="form-group">
@@ -17,6 +17,7 @@
       <div class="form-group pull-right">
         {{ Form::submit(Lang::get('users.login'), ['class' => 'btn btn-primary']) }}
       </div>
+        {{ HTML::linkRoute('users.reset', Lang::get('users.lost-password'), null, ['class' => 'text-muted']) }}
       <div class="clearfix">&nbsp;</div>
     {{ Form::close() }}
     <div class="col-md-7 col-md-offset-1 well">
@@ -25,7 +26,7 @@
       <p>Further user accounts are visible from the {{ HTML::linkRoute('users.index', 'user admin') }} page (must be logged in as admin to view page), all user passwords are &quot;<strong>test</strong>&quot;.
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-4 col-md-4">
       <hr>

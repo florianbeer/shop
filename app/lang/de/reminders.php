@@ -13,12 +13,16 @@ return array(
 	|
 	*/
 
-	"password" => "Passw&ouml;rter müssen mindestens 6 Zeichen lang sein und mit dem Best&aunl;tigungsfeld &uuml;bereinstimmen.",
+	"password" => "Passw&ouml;rter müssen mindestens 6 Zeichen lang sein und mit dem Best&auml;tigungsfeld &uuml;bereinstimmen.",
 
 	"user" => "Es wurde kein Benutzer mit dieser Email Adresse gefunden.",
 
-	"token" => "Diers Passwort Reset Token ist ung&uuml;ltig.",
+	"token" => "Ungültiger Reset Token",
 
-	"sent" => "Passwort Erinnerung wurde verschickt."
+	"sent" => "Passwort Erinnerung wurde verschickt.",
+
+    'mail-subject' => 'Passwort zurücksetzen',
+
+    'mail-body' => 'Um Ihr Passwort zu ändern, füllen sie bitte folgendes Formular aus: '
 
 );

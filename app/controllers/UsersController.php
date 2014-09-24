@@ -152,4 +152,16 @@ class UsersController extends \BaseController {
             ->with('message', Lang::get('users.logout-message'));
     }
 
+    /**
+     * Display Password reset form
+     * GET /reset
+     *
+     * @return Response
+     */
+    public function reset()
+    {
+        return View::make('password.remind')
+            ->with('title', Lang::get('users.reset-password'));
+    }
+
 }

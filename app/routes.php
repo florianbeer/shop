@@ -49,6 +49,8 @@ Route::post('login', ['uses' => 'UsersController@doLogin', 'as' => 'users.login'
 Route::get('logout', ['uses' => 'UsersController@logout', 'as' => 'users.logout']);
 Route::get('register', ['uses' => 'UsersController@create', 'as' => 'users.create']);
 Route::get('profile', ['uses' => 'UsersController@edit', 'as' => 'users.edit']);
+Route::get('reset', ['uses' => 'UsersController@reset', 'as' => 'users.reset']);
+Route::post('reset', ['uses' => 'UsersController@doReset', 'as' => 'users.reset']);
 
 /*
  * Admin

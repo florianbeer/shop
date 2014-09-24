@@ -3,14 +3,14 @@
 @section('icon')
   <span class="glyphicon glyphicon-user"></span>
 @stop
-  
+
 @section('content')
 
   <div class="row">
     {{ Form::open(['action' => 'RemindersController@postReset', 'class' => 'col-lg-4 col-md-4']) }}
       {{ Form::hidden('token', $token) }}
       <div class="form-group">
-        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => Lang::get('misc.email')]) }}
+        {{ Form::email('email', null, ['class' => 'form-control', 'autofocus' => 'autofocus', 'placeholder' => Lang::get('misc.email')]) }}
       </div>
       <div class="form-group">
         {{ Form::password('password', ['class' => 'form-control', 'placeholder' => Lang::get('misc.password')]) }}
