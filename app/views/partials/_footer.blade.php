@@ -1,6 +1,6 @@
 <footer class="hidden-print">
-  <div class="container" data-wow-duration="1.5s">
-    <div class="row wow fadeInUp">
+  <div class="container">
+    <div>
       <div class="col-sm-6">
         <p>&copy;{{ date('Y') }} <a href="http://42dev.eu">42dev</a> - {{ Lang::get('misc.footer-text') }}.</p>
         <p class="nowrap">
