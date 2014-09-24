@@ -12,10 +12,10 @@
       </div>
       <div class="col-sm-6">
         <div class="pull-right">
-          <a href="#">Imprint</a> |
-          <a href="#">Privacy policy</a> |
-          <a href="#">Terms of service</a> |
-          <a href="/contact">Contact us</a>
+          <a href="#">{{ Lang::get('misc.imprint') }}</a> |
+          <a href="#">{{ Lang::get('misc.privacy-policy') }}</a> |
+          <a href="#">{{ Lang::get('misc.tos') }}</a> |
+          <a href="/contact">{{ Lang::get('misc.contact-us') }}</a>
         </div>
       </div>
     </div>

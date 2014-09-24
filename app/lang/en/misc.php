@@ -58,6 +58,14 @@ return [
 
   'switch-to-language' => ':lang',
 
-  'language' => 'Language'
+  'language' => 'Language',
+
+  'imprint' => 'Imprint',
+
+  'privacy-policy' => 'Privacy policy',
+
+  'tos' => 'Terms of service',
+
+  'contact-us' => 'Contact us'
 
 ];

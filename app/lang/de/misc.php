@@ -60,6 +60,14 @@ return [
 
   'switch-to-language' => ':lang',
 
-  'language' => 'Sprache'
+  'language' => 'Sprache',
+
+  'imprint' => 'Impressum',
+
+  'privacy-policy' => 'Datenschutzrichtlinie',
+
+  'tos' => 'AGB',
+
+  'contact-us' => 'Kontakt'
 
 ];
