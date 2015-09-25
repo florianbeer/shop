@@ -18,6 +18,8 @@ class CartController extends \BaseController {
     {
         return View::make('cart.index')
             ->withTitle(Lang::get('cart.name'))
+            ->withShipping([])
+            ->withPayment([])
             ->withProducts(Cart::contents());
     }
 

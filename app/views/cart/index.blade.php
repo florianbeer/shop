@@ -3,9 +3,9 @@
 @section('icon')
   <span class="glyphicon glyphicon-shopping-cart"></span>
 @stop
-  
+
 @section('content')
-  <div class="row">
+  <!-- div class="row">
       <div class="col-sm-6">
         <div class="form-group">
             {{ Form::select('shipping_id', $shipping, null, ['class' => "form-control"]) }}
@@ -14,7 +14,7 @@
             {{ Form::select('payment_id', $payment, null, ['class' => "form-control"]) }}
         </div>
       </div>
-  </div>
+  </div -->
   <div class="row" id="cart-row">
     <div class="col-xs-12 table-responsive">
       {{ Form::open(['route' => 'orders.store']) }}
