@@ -1,6 +1,12 @@
 ## 42dev shop
 
-Webshop application with categories, products, user registration, shopping cart and order management.
+A fully responsive, multi-language online shop system with order tracking and multiple categories.
+
+Custom integrations available via:
+
+- http://42dev.eu
+- Email: office@42dev.eu
+- Twitter: @42_dev
 
 ### Installation
 
