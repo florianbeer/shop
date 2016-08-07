@@ -1,12 +1,15 @@
 ## 42dev shop
 
-A fully responsive, multi-language online shop system with order tracking and multiple categories.
+A fully responsive, multi-language online shop system with order tracking and multiple categories.  
+Demosite: http://shop.42dev.eu
 
 Custom integrations available via:
 
 - http://42dev.eu
 - Email: office@42dev.eu
 - Twitter: @42_dev
+
+![42dev shop admin backend](https://blog.no-panic.at/wp-content/uploads/2014/10/42dev-shop-1024x729.png "42dev shop admin backend")
 
 ### Installation
 
